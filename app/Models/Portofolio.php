@@ -2,19 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Portofolio extends Model
 {
-    use HasFactory;
-
-    protected $table = 'portofolio'; // pakai nama tabel sesuai migration
+    protected $table = 'portofolio';
 
     protected $fillable = [
+        'category_id',
         'judul',
         'kategori',
         'deskripsi',
         'gambar',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }
