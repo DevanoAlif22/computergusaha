@@ -30,6 +30,15 @@
 
   <!-- Template Main CSS File -->
   <link href="{{ asset('assets/css/styleadmin.css') }}" rel="stylesheet">
+
+  <!-- Summernote CSS (global) -->
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs5.min.css" rel="stylesheet">
+  <style>
+    /* tinggi minimal area edit */
+    .note-editor .note-editable { min-height: 220px; }
+  </style>
+
+  @yield('styles')
 </head>
 
 <body>
@@ -75,98 +84,96 @@
   <!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
-  <ul class="sidebar-nav" id="sidebar-nav">
+  <aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-    <!-- Dashboard -->
-    <li class="nav-item">
-      <a class="nav-link" href="dashboard.html">
-        <i class="bi bi-grid"></i>
-        <span>Dashboard</span>
-      </a>
-    </li><!-- End Dashboard Nav -->
+      <!-- Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="dashboard.html">
+          <i class="bi bi-grid"></i>
+          <span>Dashboard</span>
+        </a>
+      </li><!-- End Dashboard Nav -->
 
-    <li class="nav-heading">Manajemen Konten</li>
+      <li class="nav-heading">Manajemen Konten</li>
 
-    <!-- Services -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="services.html">
-        <i class="bi bi-gear"></i>
-        <span>Services</span>
-      </a>
-    </li><!-- End Services Nav -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="services.html">
-        <i class="bi bi-gear"></i>
-        <span>Category</span>
-      </a>
-    </li><!-- End Services Nav -->
+      <!-- Services -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="services.html">
+          <i class="bi bi-gear"></i>
+          <span>Services</span>
+        </a>
+      </li><!-- End Services Nav -->
 
-    <!-- Portfolio (gunakan route Laravel) -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="{{ route('admin.portofolio.index') }}">
-        <i class="bi bi-briefcase"></i>
-        <span>Portofolio</span>
-      </a>
-    </li><!-- End Portfolio Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="services.html">
+          <i class="bi bi-gear"></i>
+          <span>Category</span>
+        </a>
+      </li><!-- End Category Nav -->
 
-    <!-- Blog / Artikel -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="blog.html">
-        <i class="bi bi-journal-text"></i>
-        <span>Blog</span>
-      </a>
-    </li><!-- End Blog Nav -->
+      <!-- Portfolio -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('admin.portofolio.index') }}">
+          <i class="bi bi-briefcase"></i>
+          <span>Portofolio</span>
+        </a>
+      </li><!-- End Portfolio Nav -->
 
-    <!-- Halaman Statis -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="pages.html">
-        <i class="bi bi-file-earmark-text"></i>
-        <span>Halaman Statis</span>
-      </a>
-    </li><!-- End Pages Nav -->
+      <!-- Blog -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="blog.html">
+          <i class="bi bi-journal-text"></i>
+          <span>Blog</span>
+        </a>
+      </li><!-- End Blog Nav -->
 
-    <!-- Kontak -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="contacts.html">
-        <i class="bi bi-envelope"></i>
-        <span>Kontak</span>
-      </a>
-    </li><!-- End Contacts Nav -->
+      <!-- Pages -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="pages.html">
+          <i class="bi bi-file-earmark-text"></i>
+          <span>Halaman Statis</span>
+        </a>
+      </li><!-- End Pages Nav -->
 
-    <li class="nav-heading">Manajemen Pengguna</li>
+      <!-- Contacts -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="contacts.html">
+          <i class="bi bi-envelope"></i>
+          <span>Kontak</span>
+        </a>
+      </li><!-- End Contacts Nav -->
 
-    <!-- User Management -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="users.html">
-        <i class="bi bi-person"></i>
-        <span>User</span>
-      </a>
-    </li><!-- End User Nav -->
+      <li class="nav-heading">Manajemen Pengguna</li>
 
-    <li class="nav-heading">Pengaturan</li>
+      <!-- Users -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="users.html">
+          <i class="bi bi-person"></i>
+          <span>User</span>
+        </a>
+      </li><!-- End User Nav -->
 
-    <!-- Settings -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="settings.html">
-        <i class="bi bi-sliders"></i>
-        <span>Pengaturan Website</span>
-      </a>
-    </li><!-- End Settings Nav -->
+      <li class="nav-heading">Pengaturan</li>
 
-  </ul>
-</aside>
-<!-- End Sidebar -->
+      <!-- Settings -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="settings.html">
+          <i class="bi bi-sliders"></i>
+          <span>Pengaturan Website</span>
+        </a>
+      </li><!-- End Settings Nav -->
 
+    </ul>
+  </aside>
+  <!-- End Sidebar -->
 
   <main id="main" class="main">
-
     <section class="section dashboard">
       <div class="row">
         @yield('content')
       </div>
     </section>
-
   </main>
   <!-- End #main -->
 
@@ -195,8 +202,69 @@
   <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
+  <!-- jQuery (wajib untuk Summernote) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+          integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+          crossorigin="anonymous"></script>
+
   <!-- Template Main JS File -->
   <script src="{{ asset('assets/js/mainAdmin.js') }}"></script>
 
+  <!-- Summernote JS -->
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs5.min.js"></script>
+
+  <!-- Summernote Init (global) -->
+  <script>
+    // Log supaya gampang ngecek layout ini kepakai
+    console.log('[indexAdmin] Summernote init loaded');
+
+    window.addEventListener('load', function () {
+      console.log('[indexAdmin] window.load fired');
+
+      const options = {
+        placeholder: 'Tulis deskripsi…',
+        tabsize: 2,
+        height: 220,
+        toolbar: [
+          ['style',    ['style']],
+          ['font',     ['bold', 'italic', 'underline', 'clear']],
+          ['para',     ['ul', 'ol', 'paragraph']],
+          ['insert',   ['link', 'picture']],
+          ['view',     ['codeview']]
+        ]
+      };
+
+      // Init semua textarea.summernote yang ada di halaman
+      if (typeof $ !== 'undefined' && $.fn && $.fn.summernote) {
+        $('.summernote').each(function () {
+          const $el = $(this);
+          if (!$el.next().hasClass('note-editor')) {
+            $el.summernote(options);
+          }
+        });
+
+        // Inisialisasi saat modal dibuka (konten dinamis di Bootstrap modal)
+        $('#tambahModal, [id^="editModal"]').on('shown.bs.modal', function () {
+          $(this).find('.summernote').each(function () {
+            const $el = $(this);
+            if (!$el.next().hasClass('note-editor')) {
+              $el.summernote(options);
+            }
+          });
+        });
+
+        // (Opsional) destroy saat modal ditutup agar tidak double instance
+        $('#tambahModal, [id^="editModal"]').on('hidden.bs.modal', function () {
+          $(this).find('.summernote').each(function () {
+            try { $(this).summernote('destroy'); } catch(e) {}
+          });
+        });
+      } else {
+        console.warn('[indexAdmin] jQuery/Summernote belum tersedia.');
+      }
+    });
+  </script>
+
+  @yield('scripts')
 </body>
 </html>
