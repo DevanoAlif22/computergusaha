@@ -127,6 +127,12 @@
           <span>Blog</span>
         </a>
       </li><!-- End Blog Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="blog.html">
+          <i class="bi bi-journal-text"></i>
+          <span>Karir</span>
+        </a>
+      </li><!-- End Blog Nav -->
 
       <!-- Pages -->
       <li class="nav-item">
