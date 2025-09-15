@@ -9,11 +9,26 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $blogs = Blog::with('kategori')->orderBy('created_at', 'desc')->paginate(10);
-        $kategoris = KategoriBlog::all();
-        return view('admin.blog.index', compact('blogs', 'kategoris'));
+        $q = trim((string) $request->query('q', ''));
+
+        $blogs = Blog::with('kategori')
+            ->when($q !== '', function ($query) use ($q) {
+                $query->where('nama', 'like', "%{$q}%")
+                    ->orWhere('deskripsi', 'like', "%{$q}%")
+                    ->orWhereHas('kategori', function ($q2) use ($q) {
+                        $q2->where('nama', 'like', "%{$q}%");
+                    });
+            })
+            ->orderByDesc('created_at')
+            ->paginate(10)
+            ->withQueryString();
+
+        // untuk dropdown kategori di modal
+        $kategoris = KategoriBlog::orderBy('nama')->get();
+
+        return view('admin.blog.index', compact('blogs', 'kategoris', 'q'));
     }
 
     public function store(Request $request)

@@ -9,13 +9,26 @@ use Illuminate\Http\Request;
 
 class LayananController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $layanans = Layanan::with('kategori')->orderBy('created_at', 'desc')->paginate(10);
-        $kategoris = KategoriLayanan::all();
-        return view('admin.layanan.index', compact('layanans', 'kategoris'));
-    }
+        $q = trim((string) $request->query('q', ''));
 
+        $layanans = Layanan::with('kategori')
+            ->when($q !== '', function ($query) use ($q) {
+                $query->where('nama', 'like', "%{$q}%")
+                    ->orWhereHas('kategori', function ($q2) use ($q) {
+                        $q2->where('nama', 'like', "%{$q}%");
+                    });
+            })
+            ->orderByDesc('created_at')
+            ->paginate(10)
+            ->withQueryString(); // pertahankan ?q=... di pagination
+
+        // untuk dropdown kategori di modal tambah/edit
+        $kategoris = KategoriLayanan::orderBy('nama')->get();
+
+        return view('admin.layanan.index', compact('layanans', 'kategoris', 'q'));
+    }
 
     public function store(Request $request)
     {

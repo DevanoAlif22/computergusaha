@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('kategori')->nullable();
-            $table->text('deskripsi')->nullable();
+            $table->longText('deskripsi')->nullable();
             $table->string('gambar')->nullable();
             $table->timestamps();
         });

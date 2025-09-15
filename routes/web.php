@@ -156,7 +156,7 @@ Route::get('/servicesdetailsomail', fn() => view('servicesdetailsomail'));
 
 //Admin
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('portofolio', PortofolioController::class, ['as' => 'admin']);
     Route::resource('kategori-layanan', KategoriLayananController::class, ['as' => 'admin']);
     Route::resource('category', CategoryController::class, ['as' => 'admin']);

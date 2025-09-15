@@ -39,6 +39,8 @@
   </style>
 
   @yield('styles')
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body>
@@ -85,87 +87,103 @@
 
   <!-- ======= Sidebar ======= -->
   <aside id="sidebar" class="sidebar">
-    <ul class="sidebar-nav" id="sidebar-nav">
+  <ul class="sidebar-nav" id="sidebar-nav">
+    {{-- Dashboard --}}
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('dashboard') ? '' : 'collapsed' }}" href="{{ route('dashboard') }}">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
 
-      <!-- Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="dashboard.html">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
+    <li class="nav-heading">Manajemen Konten</li>
 
-      <li class="nav-heading">Manajemen Konten</li>
+    {{-- Kategori Layanan --}}
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('admin.kategori-layanan.*') ? '' : 'collapsed' }}" href="{{ route('admin.kategori-layanan.index') }}">
+        <i class="bi bi-diagram-3"></i>
+        <span>Kategori Layanan</span>
+      </a>
+    </li>
 
-      <!-- Services -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="services.html">
-          <i class="bi bi-gear"></i>
-          <span>Services</span>
-        </a>
-      </li><!-- End Services Nav -->
+    {{-- Layanan --}}
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('admin.layanan.*') ? '' : 'collapsed' }}" href="{{ route('admin.layanan.index') }}">
+        <i class="bi bi-wrench"></i>
+        <span>Layanan</span>
+      </a>
+    </li>
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="services.html">
-          <i class="bi bi-gear"></i>
-          <span>Category</span>
-        </a>
-      </li><!-- End Category Nav -->
+    {{-- Category (umum/katalog) --}}
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('admin.category.*') ? '' : 'collapsed' }}" href="{{ route('admin.category.index') }}">
+        <i class="bi bi-tags"></i>
+        <span>Category</span>
+      </a>
+    </li>
 
-      <!-- Portfolio -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ route('admin.portofolio.index') }}">
-          <i class="bi bi-briefcase"></i>
-          <span>Portofolio</span>
-        </a>
-      </li><!-- End Portfolio Nav -->
+    {{-- Portofolio --}}
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('admin.portofolio.*') ? '' : 'collapsed' }}" href="{{ route('admin.portofolio.index') }}">
+        <i class="bi bi-briefcase"></i>
+        <span>Portofolio</span>
+      </a>
+    </li>
 
-      <!-- Blog -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="blog.html">
-          <i class="bi bi-journal-text"></i>
-          <span>Blog</span>
-        </a>
-      </li><!-- End Blog Nav -->
+    {{-- Kategori Blog --}}
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('admin.kategori-blog.*') ? '' : 'collapsed' }}" href="{{ route('admin.kategori-blog.index') }}">
+        <i class="bi bi-collection"></i>
+        <span>Kategori Blog</span>
+      </a>
+    </li>
 
-      <!-- Pages -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages.html">
-          <i class="bi bi-file-earmark-text"></i>
-          <span>Halaman Statis</span>
-        </a>
-      </li><!-- End Pages Nav -->
+    {{-- Blog --}}
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('admin.blog.*') ? '' : 'collapsed' }}" href="{{ route('admin.blog.index') }}">
+        <i class="bi bi-journal-text"></i>
+        <span>Blog</span>
+      </a>
+    </li>
 
-      <!-- Contacts -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="contacts.html">
-          <i class="bi bi-envelope"></i>
-          <span>Kontak</span>
-        </a>
-      </li><!-- End Contacts Nav -->
+    {{-- Halaman Statis (jika nanti pakai resource pages.*, sesuaikan) --}}
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="pages.html">
+        <i class="bi bi-file-earmark-text"></i>
+        <span>Halaman Statis</span>
+      </a>
+    </li>
 
-      <li class="nav-heading">Manajemen Pengguna</li>
+    {{-- Kontak --}}
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="contacts.html">
+        <i class="bi bi-envelope"></i>
+        <span>Kontak</span>
+      </a>
+    </li>
 
-      <!-- Users -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="users.html">
-          <i class="bi bi-person"></i>
-          <span>User</span>
-        </a>
-      </li><!-- End User Nav -->
+    <li class="nav-heading">Manajemen Pengguna</li>
 
-      <li class="nav-heading">Pengaturan</li>
+    {{-- Users (kalau sudah ada route users.* bisa di-aktifkan state-nya) --}}
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('users.*') ? '' : 'collapsed' }}" href="{{ url('users') }}">
+        <i class="bi bi-people"></i>
+        <span>User</span>
+      </a>
+    </li>
 
-      <!-- Settings -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="settings.html">
-          <i class="bi bi-sliders"></i>
-          <span>Pengaturan Website</span>
-        </a>
-      </li><!-- End Settings Nav -->
+    <li class="nav-heading">Pengaturan</li>
 
-    </ul>
-  </aside>
+    {{-- Settings (kalau nanti ada route settings.* tinggal ganti href + state) --}}
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="settings.html">
+        <i class="bi bi-sliders"></i>
+        <span>Pengaturan Website</span>
+      </a>
+    </li>
+  </ul>
+</aside>
+
   <!-- End Sidebar -->
 
   <main id="main" class="main">
@@ -215,55 +233,93 @@
 
   <!-- Summernote Init (global) -->
   <script>
-    // Log supaya gampang ngecek layout ini kepakai
-    console.log('[indexAdmin] Summernote init loaded');
+  console.log('[indexAdmin] Summernote init loaded');
 
-    window.addEventListener('load', function () {
-      console.log('[indexAdmin] window.load fired');
+  // setup CSRF untuk semua AJAX jQuery
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+    }
+  });
 
-      const options = {
-        placeholder: 'Tulis deskripsi…',
-        tabsize: 2,
-        height: 220,
-        toolbar: [
-          ['style',    ['style']],
-          ['font',     ['bold', 'italic', 'underline', 'clear']],
-          ['para',     ['ul', 'ol', 'paragraph']],
-          ['insert',   ['link', 'picture']],
-          ['view',     ['codeview']]
-        ]
-      };
+  window.addEventListener('load', function () {
+    console.log('[indexAdmin] window.load fired');
 
-      // Init semua textarea.summernote yang ada di halaman
-      if (typeof $ !== 'undefined' && $.fn && $.fn.summernote) {
-        $('.summernote').each(function () {
-          const $el = $(this);
-          if (!$el.next().hasClass('note-editor')) {
-            $el.summernote(options);
+    const options = {
+      placeholder: 'Tulis deskripsi…',
+      tabsize: 2,
+      height: 220,
+      toolbar: [
+        ['style',    ['style']],
+        ['font',     ['bold', 'italic', 'underline', 'clear']],
+        ['para',     ['ul', 'ol', 'paragraph']],
+        ['insert',   ['link', 'picture']], // picture tetap, tapi kita override upload-nya
+        ['view',     ['codeview']]
+      ],
+      callbacks: {
+        // Upload jika user memilih gambar dari file picker
+        onImageUpload: function(files) {
+          const editor = $(this);
+          for (let i = 0; i < files.length; i++) {
+            uploadImage(files[i], function(url) {
+              editor.summernote('insertImage', url);
+            });
           }
-        });
+        },
+        // Cegah paste gambar base64 (opsional: supaya konten tetap ringan)
+        onPaste: function(e) {
+          const clipboard = (e.originalEvent || e).clipboardData;
+          if (!clipboard) return;
 
-        // Inisialisasi saat modal dibuka (konten dinamis di Bootstrap modal)
-        $('#tambahModal, [id^="editModal"]').on('shown.bs.modal', function () {
-          $(this).find('.summernote').each(function () {
-            const $el = $(this);
-            if (!$el.next().hasClass('note-editor')) {
-              $el.summernote(options);
+          // Kalau ada item bertipe image di clipboard → cegah default (base64)
+          for (let i = 0; i < clipboard.items.length; i++) {
+            if (clipboard.items[i].type.indexOf('image') !== -1) {
+              e.preventDefault();
+              // Kamu bisa juga upload gambar dari clipboard di sini kalau mau
+              // dengan clipboard.items[i].getAsFile() lalu panggil uploadImage(...)
+              alert('Tempel gambar langsung dinonaktifkan. Gunakan tombol "Insert image".');
+              return;
             }
-          });
-        });
-
-        // (Opsional) destroy saat modal ditutup agar tidak double instance
-        $('#tambahModal, [id^="editModal"]').on('hidden.bs.modal', function () {
-          $(this).find('.summernote').each(function () {
-            try { $(this).summernote('destroy'); } catch(e) {}
-          });
-        });
-      } else {
-        console.warn('[indexAdmin] jQuery/Summernote belum tersedia.');
+          }
+        }
       }
-    });
-  </script>
+    };
+
+    function uploadImage(file, done) {
+      const formData = new FormData();
+      formData.append('file', file);
+
+      $.ajax({
+        url: "{{ route('admin.upload.summernote') }}",
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (res) {
+          if (res && res.url) {
+            done(res.url);
+          } else {
+            alert('Upload gagal: respons tidak valid.');
+          }
+        },
+        error: function (xhr) {
+          console.error('Upload error:', xhr);
+          alert('Gagal mengunggah gambar.');
+        }
+      });
+    }
+
+    // Init semua .summernote
+    if (typeof $ !== 'undefined' && $.fn && $.fn.summernote) {
+      $('.summernote').each(function () {
+        const $el = $(this);
+        if (!$el.next().hasClass('note-editor')) {
+          $el.summernote(options);
+        }
+      });
+    }
+  });
+</script>
 
   @yield('scripts')
 </body>
