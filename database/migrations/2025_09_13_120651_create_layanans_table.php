@@ -12,9 +12,9 @@ return new class extends Migration {
             $table->foreignId('kategorilayanan_id')
                 ->constrained('kategori_layanans')
                 ->cascadeOnUpdate()
-                ->restrictOnDelete();
+                ->cascadeOnDelete();
             $table->string('nama');
-            $table->text('deskripsi')->nullable();
+            $table->longText('deskripsi')->nullable();
             $table->string('gambar')->nullable();
             $table->timestamps();
         });
