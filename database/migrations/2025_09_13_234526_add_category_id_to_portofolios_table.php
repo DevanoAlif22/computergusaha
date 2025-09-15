@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::table('portofolios', function (Blueprint $table) {
+        Schema::table('portofolio', function (Blueprint $table) {
             $table->foreignId('category_id')
                 ->after('id')
                 ->constrained('categories')
@@ -18,7 +18,7 @@ return new class extends Migration {
 
     public function down(): void
     {
-        Schema::table('portofolios', function (Blueprint $table) {
+        Schema::table('portofolio', function (Blueprint $table) {
             $table->dropForeign(['category_id']);
             $table->dropColumn('category_id');
         });
