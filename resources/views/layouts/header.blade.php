@@ -41,7 +41,7 @@
     <nav class="navbar navbar-expand-lg navbar-light style-7">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="assets/img/logo_otw.png" alt="">
+<img src="{{ asset('assets/img/logo_otw.png') }}" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -87,7 +87,7 @@
                 <div class="nav-side">
                     <div class="qoute-nav ps-4">
                         <a class="navbar-brand" href="#">
-                            <img src="assets/img/logo_tdt.png" alt="">
+                          <img src="{{ asset('assets/img/logo_tdt.png') }}" alt="">
                         </a>
                         <!-- <a href="#" class="me-4">
                             <img src="assets/img/icons/user.png" alt="">
@@ -109,7 +109,7 @@
     <!-- ---------- loader ---------- -->
     <div id="preloader">
         <div id="loading-wrapper" class="show">
-            <div id="loading-text"> <img src="assets/img/otw.png" alt=""> </div>
+          <div id="loading-text"> <img src="{{ asset('assets/img/otw.png') }}" alt=""> </div>
             <div id="loading-content"></div>
         </div>
     </div>

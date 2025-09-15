@@ -87,8 +87,9 @@ Route::get('/shop-5', fn() => view('page-shop-5'));
 Route::get('/single-project-5', fn() => view('page-single-project-5'));
 // Route::get('/portfolio', fn() => view('page-portfolio'));
 Route::get('/portfolio', [FrontController::class, 'listPortofolio']);
-Route::get('/portfolio/{id}', [FrontController::class, 'showPortofolio'])->name('portfolio.show');
-Route::get('/karir', [FrontController::class, 'listKarir']);
+Route::get('/portfolio/{id}', [FrontController::class, 'detailPortofolio'])->name('portfolio.detail');
+Route::get('/karir', [FrontController::class, 'listKarir'])->name('karir.index');
+Route::get('/karir/{id}', [FrontController::class, 'detailKarir'])->name('karir.detail');
 
 
 

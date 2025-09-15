@@ -66,23 +66,18 @@
                     <div class="content">
                       <div class="row mix-container">
                             @foreach ($data as $item)
-                                <div class="col-lg-4 mix security consultation">
+                                <div class="col-lg-4 mix {{ $item->category ? Str::slug($item->category->name) : '' }}">
                                     <div class="portfolio-card mb-50">
                                         <div class="img">
                                             <img src="{{ $item->gambar ? asset('storage/' . $item->gambar) : asset('assets/img/projects/prog/1.jpeg') }}" alt="{{ $item->judul }}">
                                         </div>
                                         <div class="info">
                                             <h5>
-                                            <a href="{{ route('portfolio.show', $item->id) }}"> {{ $item->judul }} </a>
+                                                <a href="{{ route('portfolio.detail', $item->id) }}"> {{ $item->judul }} </a>
                                             </h5>
 
-                                            {{-- tampilkan kategori dari relasi --}}
-                                            <small class="d-block color-main text-uppercase">
-                                                {{ $item->category ? $item->category->name : 'Tanpa Kategori' }}
-                                            </small>
-
-                                          <div class="text">
-                                                {!! $item->deskripsi ?? 'Tidak ada deskripsi.' !!}
+                                            <div class="text">
+                                                {!! Str::words($item->deskripsi ?? 'Tidak ada deskripsi.', 50, '...') !!}
                                             </div>
 
                                             <div class="tags">
@@ -93,6 +88,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             @endforeach  
                         </div>
 

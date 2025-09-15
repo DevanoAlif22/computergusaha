@@ -14,13 +14,13 @@ class FrontController extends Controller
     $data = Portofolio::with('category')->get(); // biar ga query ulang2
     $categories = Category::all(); 
 
-    return view('halaman-portofolio', compact('data', 'categories'));
+    return view('portofolio', compact('data', 'categories'));
 }
 
-public function showPortofolio($id)
+public function detailPortofolio($id)
 {
     $item = Portofolio::findOrFail($id); // Atau pakai where('slug', $id) jika pakai slug
-    return view('halaman-portofolio-detail', compact('item'));
+    return view('portofolio-detail', compact('item'));
 }
  public function listKarir()
     {
@@ -29,5 +29,12 @@ public function showPortofolio($id)
 
         // Kirim ke view 'karir.blade.php'
         return view('karir', compact('karirs'));
+    }
+
+      public function detailKarir($id)
+    {
+
+        $karir = Karir::findOrFail($id);
+        return view('karir-detail', compact('karir'));
     }
 }

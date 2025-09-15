@@ -34,6 +34,16 @@ class PortofolioController extends Controller
         Portofolio::create($validated);
         return redirect()->route('admin.portofolio.index')->with('success', 'Portofolio berhasil ditambahkan.');
     }
+    
+public function uploadImage(Request $request)
+{
+    if ($request->hasFile('gambar')) {
+        $path = $request->file('gambar')->store('portofolio', 'public');
+        $url = asset('storage/' . $path);
+        return response($url, 200)->header('Content-Type', 'text/plain');
+    }
+    return response('', 400);
+}
     public function update(Request $request, Portofolio $portofolio)
     {
         $request->validate([

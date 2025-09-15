@@ -7,8 +7,8 @@
                         <div class="col-lg-6">
                             <div class="foot-logo">
                                 <a href="#">
-                                    <img src="assets/img/logo_otw.png" alt="">
-                                    <img src="assets/img/logo_tdt.png" alt="">
+                                    <img src="{{ asset('assets/img/logo_otw.png') }}" alt="">
+                                    <img src="{{ asset('assets/img/logo_tdt.png') }}" alt="">
                                 </a>
                             </div>
                         </div>
@@ -57,8 +57,8 @@
                         </div>
                         <div class="col-lg-3 col-sm-4">
                             <div class="foot-subscribe"> <br>
-                            <img src="assets/img/logo-komdigi.png" style="max-height: 50px;">
-                            <img src="assets/img/logo-pse-small.png" style="max-height: 50px;"><br><br>
+                           <img src="{{ asset('assets/img/logo-komdigi.png') }}" style="max-height: 50px;">
+<img src="{{ asset('assets/img/logo-pse-small.png') }}" style="max-height: 50px;"><br><br>
                             <p class="fst-italic">Terdaftar :</a></p>
                                 <p> 006650.01/DJAI.PSE/08/2022 <br>CV. OTW Computer Gusaha</p>
                             </div>
@@ -67,8 +67,8 @@
                 </div>
             </div>
             <div class="foot py-4 border-1 border-top brd-gray text-center mt-0 pt-0">
-                <p>
-                    © 2025 Touched by the Hands of <img src="assets/img/logo_otw.png" alt="OTW Computer Gusaha" style="max-height: 15px;">
+               <p>
+                    © 2025 Touched by the Hands of <img src="{{ asset('assets/img/logo_otw.png') }}" alt="OTW Computer Gusaha" style="max-height: 15px;">
                 </p>
             </div>
         </div>
