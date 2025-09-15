@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::create('portofolio', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->string('kategori')->nullable();
             $table->text('deskripsi')->nullable();
             $table->string('gambar')->nullable();
             $table->timestamps();

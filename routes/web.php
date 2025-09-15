@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\KarirController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -84,8 +86,10 @@ Route::get('/services-5', fn() => view('page-services-5'));
 Route::get('/shop-5', fn() => view('page-shop-5'));
 Route::get('/single-project-5', fn() => view('page-single-project-5'));
 // Route::get('/portfolio', fn() => view('page-portfolio'));
-Route::get('/portfolio', [PortofolioController::class, 'listPortofolio']);
-Route::get('/portfolio/{id}', [PortofolioController::class, 'showPortofolio'])->name('portfolio.show');
+Route::get('/portfolio', [FrontController::class, 'listPortofolio']);
+Route::get('/portfolio/{id}', [FrontController::class, 'detailPortofolio'])->name('portfolio.detail');
+Route::get('/karir', [FrontController::class, 'listKarir'])->name('karir.index');
+Route::get('/karir/{id}', [FrontController::class, 'detailKarir'])->name('karir.detail');
 
 
 
@@ -118,7 +122,7 @@ Route::get('/pricing-plan', fn() => view('page-about-5'));
 | Karir & FAQ
 |--------------------------------------------------------------------------
 */
-Route::get('/karir', fn() => view('karir'));
+
 Route::get('/faq', fn() => view('faq'));
 
 /*
@@ -153,6 +157,7 @@ Route::get('/servicesdetailsomail', fn() => view('servicesdetailsomail'));
 Route::prefix('admin')->group(function () {
     Route::resource('portofolio', PortofolioController::class, ['as' => 'admin']);
       Route::resource('category', CategoryController::class, ['as' => 'admin']);
+      Route::resource('karir', KarirController::class, ['as' => 'admin']);
 });
 /*
 |--------------------------------------------------------------------------
