@@ -64,34 +64,34 @@
 
                 <section class="portfolio style-1">
                     <div class="content">
-                        <div class="row mix-container">
+                      <div class="row mix-container">
                             @foreach ($data as $item)
-                                <div class="col-lg-4 mix security consultation">
+                                <div class="col-lg-4 mix {{ $item->category ? Str::slug($item->category->name) : '' }}">
                                     <div class="portfolio-card mb-50">
                                         <div class="img">
                                             <img src="{{ $item->gambar ? asset('storage/' . $item->gambar) : asset('assets/img/projects/prog/1.jpeg') }}" alt="{{ $item->judul }}">
                                         </div>
                                         <div class="info">
                                             <h5>
-                                               <a href="{{ route('portfolio.show', $item->id) }}"> {{ $item->judul }} </a>
-
-
+                                                <a href="{{ route('portfolio.detail', $item->id) }}"> {{ $item->judul }} </a>
                                             </h5>
-                                            <small class="d-block color-main text-uppercase">{{ $item->kategori ?? 'Tanpa Kategori' }}</small>
+
                                             <div class="text">
-                                                {{ $item->deskripsi ?? 'Tidak ada deskripsi.' }}
+                                                {!! Str::words($item->deskripsi ?? 'Tidak ada deskripsi.', 50, '...') !!}
                                             </div>
+
                                             <div class="tags">
-                                                {{-- Kalau kamu simpan tag di field khusus (array atau teks), tinggal loop di sini --}}
-                                                <a href="#">{{ $item->kategori ?? 'Tag' }}</a>
-                                                {{-- Bisa tambahin tag tambahan kalau mau --}}
+                                                <a href="#">
+                                                    {{ $item->category ? $item->category->name : 'Tag' }}
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             @endforeach  
-                          
                         </div>
+
                     </div>
                     <div class="text-center">
                         <a href="{{ url('/portfolio-load-more') }}" class="btn rounded-pill blue5-3Dbutn hover-blue2 sm-butn fw-bold mt-30">

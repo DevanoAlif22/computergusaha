@@ -11,35 +11,39 @@ class PortofolioController extends Controller
 {
     public function index()
     {
-        
-        $portofolio = Portofolio::all();
-        return view('admin.portofolio.index', compact('portofolio'));
+
+        $portofolio = Portofolio::with('category')->get();
+        $categories = Category::all();
+        return view('admin.portofolio.index', compact('portofolio', 'categories'));
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'judul' => 'required',
-            'kategori' => 'nullable',
-            'deskripsi' => 'nullable',
-            'gambar' => 'nullable|pimage|mimes:jpg,png,jpeg|max:2048',
-        ]);
 
-        $path = null;
+ public function store(Request $request)
+    {
+
+        $validated = $request->validate([
+            'category_id' => ['required', 'exists:categories,id'], // Validasi category_id
+            'judul' => ['required', 'string'],
+            'deskripsi' => ['nullable', 'string'],
+            'gambar' => ['nullable', 'image', 'max:2048'],
+        ]);
         if ($request->hasFile('gambar')) {
-            $path = $request->file('gambar')->store('portofolio', 'public');
+            $validated['gambar'] = $request->file('gambar')->store('portofolio', 'public');
         }
 
-        Portofolio::create([
-            'judul' => $request->judul,
-            'kategori' => $request->kategori,
-            'deskripsi' => $request->deskripsi,
-            'gambar' => $path,
-        ]);
-
-        return redirect()->route('admin.portofolio.index')->with('success', 'Portofolio berhasil ditambahkan');
+        Portofolio::create($validated);
+        return redirect()->route('admin.portofolio.index')->with('success', 'Portofolio berhasil ditambahkan.');
     }
-
+    
+public function uploadImage(Request $request)
+{
+    if ($request->hasFile('gambar')) {
+        $path = $request->file('gambar')->store('portofolio', 'public');
+        $url = asset('storage/' . $path);
+        return response($url, 200)->header('Content-Type', 'text/plain');
+    }
+    return response('', 400);
+}
     public function update(Request $request, Portofolio $portofolio)
     {
         $request->validate([
@@ -72,14 +76,15 @@ class PortofolioController extends Controller
 
 public function listPortofolio()
 {
-    $data = Portofolio::all();
-    $categories = Category::all(); // Ambil semua kategori dari tabel
+    $data = Portofolio::with('category')->get(); // biar ga query ulang2
+    $categories = Category::all(); 
 
-    return view('page-portfolio', compact('data', 'categories'));
+    return view('halaman-portofolio', compact('data', 'categories'));
 }
+
 public function showPortofolio($id)
 {
     $item = Portofolio::findOrFail($id); // Atau pakai where('slug', $id) jika pakai slug
-    return view('page-portfolio-detail', compact('item'));
+    return view('halaman-portofolio-detail', compact('item'));
 }
 }

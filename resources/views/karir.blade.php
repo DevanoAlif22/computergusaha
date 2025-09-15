@@ -92,29 +92,24 @@
                     <h2 class="mb-20"> Mari Berkarir bersama <span> OTW </span> </h2>
                     <!-- <div class="text color-666">More than 15,000 companies trust and choose Itech</div> -->
                 </div>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <a href="#" class="position-card mb-4">
-                            <h5> Marketing Digital </h5>
-                                <p> Kami sedang mencari Digital Marketing untuk bergabung bersama tim kami. </p>
-                            <div class="time">
-                                <span class="me-4"> <i class="fal fa-clock me-1 color-main"></i> Full-time </span>
-                                <span> <i class="fal fa-file me-1 color-main"></i> Subject-MD </span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4">
-                        <a href="#" class="position-card mb-4">
-                            <h5> Programmer </h5>
-                            <p> Kami sedang mencari programmer berbakat untuk mengembangkan sistem kami. </p>
-                            <div class="time">
-                                <span class="me-4"> <i class="fal fa-clock me-1 color-main"></i> Full-time </span>
-                                <span> <i class="fal fa-file me-1 color-main"></i> Subject-PG</span>
-                            </div>
-                            <span class="trend-mark"> <i class="fas fa-bolt"></i> </span>
-                        </a>
-                    </div>
+            <div class="row">
+    @foreach($karirs as $item)
+        <div class="col-lg-4">
+            <a href="{{ route('karir.detail', $item->id) }}" class="position-card mb-4">
+                <h5>{{ $item->nama }}</h5>
+                <div class="time">
+                    <span class="me-4">
+                        <i class="fal fa-tags me-1 color-main"></i> {{ $item->jenis }}
+                    </span>
+                   
                 </div>
+               <p>{!! Str::words($item->deskripsi ?? 'Tidak ada deskripsi.', 50, '...') !!}</p>
+            </a>
+        </div>
+    @endforeach
+</div>
+
+
             </div>
         </section>
         <!-- ====== end careers positions ====== -->

@@ -11,7 +11,6 @@ class Portofolio extends Model
     protected $fillable = [
         'category_id',
         'judul',
-        'kategori',
         'deskripsi',
         'gambar',
     ];
