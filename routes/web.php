@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\KategoriLayananController;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', fn() => view('index'))->name('landing');
+Route::get('/', [FrontController::class, 'index'])->name('home');
 Route::get('/home-landing', fn() => view('index'));
 Route::get('/landing-preview', fn() => view('index'));
 
