@@ -43,7 +43,7 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
@@ -56,32 +56,54 @@
     </div>
 
     <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
-        <li class="nav-item dropdown pe-3">
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="{{ asset('assets/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Users</span>
-          </a>
+  <ul class="d-flex align-items-center">
+    <li class="nav-item dropdown pe-3">
+      <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+        @php
+          $me = auth()->user();
+          $avatar = $me?->avatar
+            ? asset('storage/'.$me->avatar)
+            : asset('assets/img/profile-img.jpg'); // fallback
+        @endphp
+        <img src="{{ $avatar }}" alt="Profile" class="rounded-circle" style="object-fit:cover; width:36px; height:36px;">
+        <span class="d-none d-md-block dropdown-toggle ps-2">
+          {{ $me?->name ?? 'User' }}
+        </span>
+      </a>
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Admin</h6>
-              <span>Web Manager</span>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <li>
-              <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="dropdown-item d-flex align-items-center">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Keluar</span>
-                </button>
-              </form>
-            </li>
-          </ul>
+      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+        <li class="dropdown-header">
+          <h6 class="mb-0">{{ $me?->name ?? 'User' }}</h6>
+          <span class="text-muted small">
+            {{ $me?->email ?? '—' }}
+          </span>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <li>
+          <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.edit') }}">
+            <i class="bi bi-person me-2"></i>
+            <span>Profil Saya</span>
+          </a>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <li>
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="dropdown-item d-flex align-items-center">
+              <i class="bi bi-box-arrow-right me-2"></i>
+              <span>Keluar</span>
+            </button>
+          </form>
         </li>
       </ul>
-    </nav>
+    </li>
+  </ul>
+</nav>
+
   </header>
   <!-- End Header -->
 
@@ -95,6 +117,14 @@
         <span>Dashboard</span>
       </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('admin.profile.*') ? '' : 'collapsed' }}"
+            href="{{ route('admin.profile.index') }}">
+            <i class="bi bi-person-circle"></i>
+            <span>Profil Saya</span>
+        </a>
+    </li>
+
 
     <li class="nav-heading">Manajemen Konten</li>
 
@@ -146,13 +176,28 @@
       </a>
     </li>
 
-    {{-- Halaman Statis (jika nanti pakai resource pages.*, sesuaikan) --}}
+
+    {{-- Halaman Statis --}}
     <li class="nav-item">
-      <a class="nav-link collapsed" href="pages.html">
+    <a class="nav-link collapsed" data-bs-target="#statis-nav" data-bs-toggle="collapse" href="#">
         <i class="bi bi-file-earmark-text"></i>
         <span>Halaman Statis</span>
-      </a>
+        <i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="statis-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+        <a href="" class="{{ request()->is('admin/pages/tentang-kami') ? 'active' : '' }}">
+            <i class="bi bi-circle"></i><span>Tentang Kami</span>
+        </a>
+        </li>
+        <li>
+        <a href="" class="{{ request()->is('admin/pages/faq') ? 'active' : '' }}">
+            <i class="bi bi-circle"></i><span>FAQ</span>
+        </a>
+        </li>
+    </ul>
     </li>
+
 
     {{-- Kontak --}}
     <li class="nav-item">
@@ -162,15 +207,15 @@
       </a>
     </li>
 
-    <li class="nav-heading">Manajemen Pengguna</li>
+    {{-- <li class="nav-heading">Manajemen Pengguna</li> --}}
 
     {{-- Users (kalau sudah ada route users.* bisa di-aktifkan state-nya) --}}
-    <li class="nav-item">
+    {{-- <li class="nav-item">
       <a class="nav-link {{ request()->routeIs('users.*') ? '' : 'collapsed' }}" href="{{ url('users') }}">
         <i class="bi bi-people"></i>
         <span>User</span>
       </a>
-    </li>
+    </li> --}}
 
     <li class="nav-heading">Pengaturan</li>
 
@@ -185,7 +230,7 @@
 </aside>
   <!-- End Sidebar -->
 
-  <main id="main" class="main">
+  <main id="main" class="main flex-grow-1">
     <section class="section dashboard">
       <div class="row">
         @yield('content')
@@ -195,7 +240,7 @@
   <!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+  <footer id="footer" class="footer mt-auto">
     <div class="copyright">
       &copy; Copyright <strong><span>Admin</span></strong>. All Rights Reserved
     </div>
