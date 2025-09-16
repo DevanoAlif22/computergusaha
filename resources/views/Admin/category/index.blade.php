@@ -5,9 +5,36 @@
     <h4 class="mb-3">Manajemen Kategori</h4>
 
     <!-- Tombol Tambah -->
-    <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#tambahKategoriModal">
-        + Tambah Kategori
+<div class="d-flex justify-content-between align-items-center gap-2 flex-wrap mb-3">
+  <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahKategoriModal">
+    + Tambah Kategori
+  </button>
+
+  <form method="GET" action="{{ route('admin.category.index') }}" class="d-flex align-items-center gap-2 ms-auto">
+    <input type="search"
+           name="q"
+           class="form-control"
+           placeholder="Cari kategori…"
+           value="{{ $q ?? request('q') }}"
+           style="min-width:260px">
+    @if(($q ?? request('q')) !== null && ($q ?? request('q')) !== '')
+      <a href="{{ route('admin.category.index') }}" class="btn btn-outline-secondary">Reset</a>
+    @endif
+    <button type="submit" class="d-flex btn btn-primary">
+      <i class="bi bi-search me-2"></i> Cari
     </button>
+  </form>
+  
+</div>
+{{-- Ringkasan total & keyword --}}
+@if(method_exists($categories, 'total'))
+    <div class="mb-2 small text-muted">
+        Total: {{ $categories->total() }}
+        @if(($q ?? '') !== '')
+            • Keyword: "<b>{{ $q }}</b>"
+        @endif
+    </div>
+@endif
 
     <!-- Tabel Kategori -->
     <div class="table-responsive">
@@ -31,9 +58,9 @@
                         </button>
 
                         <!-- Tombol Hapus -->
-                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST" style="display:inline">
+                        <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST" style="display:inline" class="delete-form">
                             @csrf @method('DELETE')
-                            <button class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus kategori ini?')">Hapus</button>
+                            <button type="button" class="btn btn-sm btn-danger btn-delete" data-name="{{ $category->name }}">Hapus</button>
                         </form>
                     </td>
                 </tr>
@@ -67,6 +94,11 @@
             </tbody>
         </table>
     </div>
+      @if(method_exists($categories, 'links'))
+    <div class="mt-3">
+      {{ $categories->links() }}
+    </div>
+  @endif
 </div>
 
 <!-- Modal Tambah Kategori -->
@@ -93,4 +125,56 @@
     </div>
   </div>
 </div>
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('success'))
+<script>
+  Swal.fire({
+    icon: 'success',
+    title: 'Berhasil',
+    text: @json(session('success')),
+    timer: 2000,
+    showConfirmButton: false
+  });
+</script>
+@endif
+
+@if($errors->any())
+<script>
+  Swal.fire({
+    icon: 'error',
+    title: 'Gagal',
+    html: `{!! implode('<br>', $errors->all()) !!}`
+  });
+</script>
+@endif
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.btn-delete').forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const form = this.closest('form');
+        const name = this.dataset.name || 'kategori ini';
+        Swal.fire({
+          title: 'Yakin hapus?',
+          html: `Anda akan menghapus <b>${name}</b>.<br> Tindakan ini tidak bisa dibatalkan!`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#6c757d',
+          confirmButtonText: 'Ya, hapus',
+          cancelButtonText: 'Batal'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            form.submit();
+          }
+        });
+      });
+    });
+  });
+</script>
 @endsection

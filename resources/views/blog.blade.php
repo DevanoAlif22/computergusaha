@@ -49,205 +49,116 @@
 
 
         <!-- ====== start blog-slider ====== -->
-        <section class="blog-slider pt-50 pb-50 style-1">
-            <div class="container">
-                <div class="section-head text-center mb-60 style-4">
-                    <h2 class="mb-20"> Our <span> Journal </span> </h2>
-                    <div class="text color-666">Get the latest articles from our journal, writing, discuss and share</div>
-                </div>
-                <div class="blog-details-slider">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="content-card">
-                                    <div class="img overlay">
-                                        <img src="assets/img/blog/s_blog.png" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="cont">
-                                                    <small class="date small mb-20"> <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3"> News </a> <i class="far fa-clock me-1"></i> Posted on <a href="#">3 Days ago</a> </small>
-                                                    <h2 class="title">
-                                                        <a href="page-single-post-5.html">Solutions For Big Data Issue, Expert Perspective</a>
-                                                    </h2>
-                                                    <p class="fs-13px mt-10 text-light text-info">If there’s one way that wireless technology has changed the way we work, it’s that will everyone is now connected [...]</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+<section class="blog-slider pt-50 pb-50 style-1">
+    <div class="container">
+        <div class="section-head text-center mb-60 style-4">
+            <h2 class="mb-20"> Our <span> Journal </span> </h2>
+            <div class="text color-666">
+                Get the latest articles from our journal, writing, discuss and share
+            </div>
+        </div>
+        <div class="blog-details-slider">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    @foreach($allBlogs as $blog)
+                        <div class="swiper-slide">
+                            <div class="content-card">
+                                <div class="img overlay">
+                                    <img src="{{ asset('storage/'.$blog->gambar) }}" alt="{{ $blog->nama }}">
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="content-card">
-                                    <div class="img overlay">
-                                        <img src="assets/img/blog/1.jpeg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="cont">
-                                                    <small class="date small mb-20"> <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3"> News </a> <i class="far fa-clock me-1"></i> Posted on <a href="#">3 Days ago</a> </small>
-                                                    <h2 class="title">
-                                                        <a href="page-single-post-5.html">Solutions For Big Data Issue, Expert Perspective</a>
-                                                    </h2>
-                                                    <p class="fs-13px mt-10 text-light text-info">If there’s one way that wireless technology has changed the way we work, it’s that will everyone is now connected [...]</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="content-card">
-                                    <div class="img overlay">
-                                        <img src="assets/img/blog/2.jpeg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <div class="row">
-                                            <div class="col-lg-6">
-                                                <div class="cont">
-                                                    <small class="date small mb-20"> <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3"> News </a> <i class="far fa-clock me-1"></i> Posted on <a href="#">3 Days ago</a> </small>
-                                                    <h2 class="title">
-                                                        <a href="page-single-post-5.html">Solutions For Big Data Issue, Expert Perspective</a>
-                                                    </h2>
-                                                    <p class="fs-13px mt-10 text-light text-info">If there’s one way that wireless technology has changed the way we work, it’s that will everyone is now connected [...]</p>
-                                                </div>
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="cont">
+                                                <small class="date small mb-20">
+                                                    {{-- tampilkan id & nama kategori --}}
+                                                      <small class="text-uppercase border-end brd-gray pe-3 me-3">
+                                                            {{ $blog->kategori->nama ?? 'Tanpa Kategori' }}
+                                                        </small>
+
+                                                    <i class="far fa-clock me-1"></i>
+                                                    Posted on <a href="#">{{ $blog->created_at->diffForHumans() }}</a>
+                                                </small>
+                                                <h2 class="title">
+                                                    <a href="{{ route('blog.detail', $blog->id) }}">
+                                                        {{ $blog->nama }}
+                                                    </a>
+                                                </h2>
+                                                <p class="fs-13px mt-10 text-light text-info">
+                                                    {!! Str::limit(strip_tags($blog->deskripsi), 100) !!}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- ====== pagination ====== -->
-                    <div class="swiper-pagination"></div>
-                    <!-- ====== arrows ====== -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+                    @endforeach
                 </div>
             </div>
-        </section>
+
+            <!-- ====== pagination ====== -->
+            <div class="swiper-pagination"></div>
+            <!-- ====== arrows ====== -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+</section>
+
+
         <!-- ====== end blog-slider ====== -->
 
 
         <!-- ====== start Popular Posts ====== -->
         <section class="popular-posts pt-50 pb-100 border-bottom brd-gray">
-            <div class="container">
-                <h5 class="post-sc-title text-center text-uppercase mb-70">Popular Posts</h5>
-                <div class="row gx-5">
-                    <div class="col-lg-4 border-end brd-gray">
-                        <div class="card border-0 bg-transparent rounded-0 mb-30 mb-lg-0 d-block">
-                            <div class="img radius-7 overflow-hidden img-cover">
-                                <img src="assets/img/blog/1.jpeg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body px-0">
-                                <small class="d-block date mt-10 fs-10px fw-bold">
-                                    <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4">News</a>
-                                    <i class="bi bi-clock me-1"></i>
-                                    <a href="#" class="op-8">Posted on 3 Days ago</a>
-                                </small>
-                                <h5 class="fw-bold mt-10 title">
-                                    <a href="page-single-post-5.html">Crypto Trend 2023</a>
-                                </h5>
-                                <p class="small mt-2 op-8 fs-10px">If there’s one way that wireless technology has
-                                    changed the way we work, it’s that will everyone is now connected [...]
-                                </p>
-                                <div class="d-flex small mt-20 align-items-center justify-content-between op-9">
-                                    <div class="l_side d-flex align-items-center">
-                                        <span class="icon-20 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-main p-1 me-2 text-white">
-                                            a
-                                        </span>
-                                        <a href="#" class="mt-1">
-                                            By Admin
-                                        </a>
-                                    </div>
-                                    <div class="r-side mt-1">
-                                        <i class="bi bi-chat-left-text me-1"></i>
-                                        <a href="#">24</a>
-                                        <i class="bi bi-eye ms-4 me-1"></i>
-                                        <a href="#">774k</a>
-                                    </div>
-                                </div>
-                            </div>
+    <div class="container">
+        <h5 class="post-sc-title text-center text-uppercase mb-70">Popular Posts</h5>
+        <div class="row gx-5">
+            @foreach($popularBlogs as $item)
+                <div class="col-lg-4 {{ !$loop->last ? 'border-end brd-gray' : '' }}">
+                    <div class="card border-0 bg-transparent rounded-0 mb-30 mb-lg-0 d-block">
+                        <div class="img radius-7 overflow-hidden img-cover">
+                            <img src="{{ asset('storage/' . $item->gambar) }}" class="card-img-top" alt="{{ $item->nama }}">
                         </div>
-                    </div>
-                    <div class="col-lg-4 border-end brd-gray">
-                        <div class="card border-0 bg-transparent rounded-0 mb-30 mb-lg-0 d-block">
-                            <div class="img radius-7 overflow-hidden img-cover">
-                                <img src="assets/img/blog/7.png" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body px-0">
-                                <small class="d-block date mt-10 fs-10px fw-bold">
-                                    <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4">News</a>
-                                    <i class="bi bi-clock me-1"></i>
-                                    <a href="#" class="op-8">Posted on 3 Days ago</a>
-                                </small>
-                                <h5 class="fw-bold mt-10 title">
-                                    <a href="page-single-post-5.html">AI With Fingerprint</a>
-                                </h5>
-                                <p class="small mt-2 op-8 fs-10px">If there’s one way that wireless technology has
-                                    changed the way we work, it’s that will everyone is now connected [...]
-                                </p>
-                                <div class="d-flex small mt-20 align-items-center justify-content-between op-9">
-                                    <div class="l_side d-flex align-items-center">
-                                        <span class="icon-20 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-main p-1 me-2 text-white">
-                                            a
-                                        </span>
-                                        <a href="#" class="mt-1">
-                                            By Admin
-                                        </a>
-                                    </div>
-                                    <div class="r-side mt-1">
-                                        <i class="bi bi-chat-left-text me-1"></i>
-                                        <a href="#">24</a>
-                                        <i class="bi bi-eye ms-4 me-1"></i>
-                                        <a href="#">774k</a>
-                                    </div>
+                        <div class="card-body px-0">
+                            <small class="d-block date mt-10 fs-10px fw-bold">
+                                <span class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4">
+                                    {{ $item->kategori->nama ?? 'Tanpa Kategori' }}
+                                </span>
+                                <i class="bi bi-clock me-1"></i>
+                                <span class="op-8">
+                                    {{ $item->created_at->diffForHumans() }}
+                                </span>
+                            </small>
+                            <h5 class="fw-bold mt-10 title">
+                                <a href="{{ route('blog.detail', $item->id) }}">{{ $item->nama }}</a>
+                            </h5>
+                            <p class="small mt-2 op-8 fs-10px">
+                                {{ Str::limit(strip_tags($item->deskripsi), 100, '...') }}
+                            </p>
+                            <div class="d-flex small mt-20 align-items-center justify-content-between op-9">
+                                <div class="l_side d-flex align-items-center">
+                                    <span class="icon-20 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-main p-1 me-2 text-white">
+                                        a
+                                    </span>
+                                    <span class="mt-1">By Admin</span>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card border-0 bg-transparent rounded-0 mb-30 mb-lg-0 d-block">
-                            <div class="img radius-7 overflow-hidden img-cover">
-                                <img src="assets/img/blog/5.png" class="card-img-top" alt="...">
-                            </div>
-                            <div class="card-body px-0">
-                                <small class="d-block date mt-10 fs-10px fw-bold">
-                                    <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4">News</a>
-                                    <i class="bi bi-clock me-1"></i>
-                                    <a href="#" class="op-8">Posted on 3 Days ago</a>
-                                </small>
-                                <h5 class="fw-bold mt-10 title">
-                                    <a href="page-single-post-5.html">NFT Game! New Oppoturnity</a>
-                                </h5>
-                                <p class="small mt-2 op-8 fs-10px">If there’s one way that wireless technology has
-                                    changed the way we work, it’s that will everyone is now connected [...]
-                                </p>
-                                <div class="d-flex small mt-20 align-items-center justify-content-between op-9">
-                                    <div class="l_side d-flex align-items-center">
-                                        <span class="icon-20 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-main p-1 me-2 text-white">
-                                            a
-                                        </span>
-                                        <a href="#" class="mt-1">
-                                            By Admin
-                                        </a>
-                                    </div>
-                                    <div class="r-side mt-1">
-                                        <i class="bi bi-chat-left-text me-1"></i>
-                                        <a href="#">24</a>
-                                        <i class="bi bi-eye ms-4 me-1"></i>
-                                        <a href="#">774k</a>
-                                    </div>
+                                <div class="r-side mt-1">
+                                    {{-- <i class="bi bi-chat-left-text me-1"></i>
+                                    <span>24</span> statis --}}
+                                    <i class="bi bi-eye ms-4 me-1"></i>
+                                    <span>{{ $item->dilihat }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
+        </div>
+    </div>
         </section>
+
         <!-- ====== end Popular Posts ====== -->
 
 
@@ -267,85 +178,42 @@
                                 </div>
                             </form>
 
-                            <div class="side-recent-post mb-50">
-                                <h6 class="title mb-20 text-uppercase fw-normal">
-                                    recent post
-                                </h6>
-                                <a href="page-single-post-5.html" class="post-card pb-3 mb-3 border-bottom brd-gray">
+                      <div class="side-recent-post mb-50">
+                            <h6 class="title mb-20 text-uppercase fw-normal">
+                                recent post
+                            </h6>
+                            @foreach($recentPosts as $item)
+                                <a href="{{ route('blog.detail', $item->id) }}" class="post-card pb-3 mb-3 border-bottom brd-gray {{ $loop->last ? 'mb-0 border-0' : '' }}">
                                     <div class="img me-3">
-                                        <img src="assets/img/blog/1.jpeg" alt="">
+                                        <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}">
                                     </div>
                                     <div class="inf">
-                                        <h6> Crypto Trend 2023 </h6>
-                                        <p> If there’s one way that wireless technology has [...] </p>
+                                        <h6>{{ $item->nama }}</h6>
+                                        <p>{{ Str::limit(strip_tags($item->deskripsi), 50, '...') }}</p>
                                     </div>
                                 </a>
-                                <a href="page-single-post-5.html" class="post-card pb-3 mb-3 border-bottom brd-gray">
-                                    <div class="img me-3">
-                                        <img src="assets/img/blog/2.jpeg" alt="">
-                                    </div>
-                                    <div class="inf">
-                                        <h6> How To Become Web Developer </h6>
-                                        <p> If there’s one way that wireless technology has [...] </p>
-                                    </div>
-                                </a>
-                                <a href="page-single-post-5.html" class="post-card pb-3 mb-3 border-bottom brd-gray">
-                                    <div class="img me-3">
-                                        <img src="assets/img/blog/3.jpeg" alt="">
-                                    </div>
-                                    <div class="inf">
-                                        <h6> Wireframe for UI/UX </h6>
-                                        <p> If there’s one way that wireless technology has [...] </p>
-                                    </div>
-                                </a>
-                                <a href="page-single-post-5.html" class="post-card">
-                                    <div class="img me-3">
-                                        <img src="assets/img/blog/7.png" alt="">
-                                    </div>
-                                    <div class="inf">
-                                        <h6> AI With Fingerprint </h6>
-                                        <p> If there’s one way that wireless technology has [...] </p>
-                                    </div>
-                                </a>
-                            </div>
+                            @endforeach
+                        </div>
 
-                            <div class="side-categories mb-50">
-                                <h6 class="title mb-20 text-uppercase fw-normal">
-                                    categories
-                                </h6>
-                                <a href="#" class="cat-item">
-                                    <span> all </span>
-                                    <span> 265 </span>
-                                </a>
-                                <a href="#" class="cat-item">
-                                    <span> News </span>
-                                    <span> 38 </span>
-                                </a>
-                                <a href="#" class="cat-item">
-                                    <span> Technology </span>
-                                    <span> 16 </span>
-                                </a>
-                                <a href="#" class="cat-item">
-                                    <span> Tips & Tricks </span>
-                                    <span> 85 </span>
-                                </a>
-                                <a href="#" class="cat-item">
-                                    <span> Career </span>
-                                    <span> 21 </span>
-                                </a>
-                                <a href="#" class="cat-item">
-                                    <span> Community </span>
-                                    <span> 874 </span>
-                                </a>
-                                <a href="#" class="cat-item">
-                                    <span> Videos </span>
-                                    <span> 54 </span>
-                                </a>
-                                <a href="#" class="cat-item border-0">
-                                    <span> Others </span>
-                                    <span> 85 </span>
-                                </a>
-                            </div>
+
+                     <div class="side-categories mb-50">
+    <h6 class="title mb-20 text-uppercase fw-normal">categories</h6>
+
+    {{-- Link All (jumlah semua blog) --}}
+    <a href="{{ route('blog.index') }}" class="cat-item">
+        <span>All</span>
+        <span>{{ $blogs->total() }}</span>
+    </a>
+
+    {{-- Looping kategori --}}
+    @foreach($categories as $cat)
+        <a href="" class="cat-item {{ $loop->last ? 'border-0' : '' }}">
+            <span>{{ $cat->nama }}</span>
+            <span>{{ $cat->blogs_count }}</span>
+        </a>
+    @endforeach
+</div    v>
+
 
                             <div class="side-newsletter mb-50">
                                 <h6 class="title mb-10 text-uppercase fw-normal">
@@ -439,296 +307,71 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8">
-                        <div class="card border-0 bg-transparent rounded-0 border-bottom brd-gray pb-30 mb-30">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="img img-cover">
-                                        <img src="assets/img/blog/6.png" class="radius-7" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="card-body p-0">
-                                        <small class="d-block date text">
-                                            <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4 fw-bold"> news </a>
-                                            <i class="bi bi-clock me-1"></i>
-                                            <a href="#" class="op-8">12 Days ago</a>
-                                        </small>
-                                        <a href="page-single-post-5.html" class="card-title mb-10">How To Become A Python Develop Expert</a>
-                                        <p class="fs-13px color-666">If there’s one way that wireless technology has changed the way we work, it’s that will everyone [...]</p>
-                                        <div class="auther-comments d-flex small align-items-center justify-content-between op-9">
-                                            <div class="l_side d-flex align-items-center">
-                                                <span
-                                                    class="icon-10 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-blue4 p-2 me-2 text-white">
-                                                    a
-                                                </span>
-                                                <a href="#">
-                                                    <small class="text-muted">By</small> Admin
-                                                </a>
-                                            </div>
-                                            <div class="r-side mt-1">
-                                                <i class="bi bi-chat-left-text me-1"></i>
-                                                <a href="#">24</a>
-                                                <i class="bi bi-eye ms-4 me-1"></i>
-                                                <a href="#">774k</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 bg-transparent rounded-0 border-bottom brd-gray pb-30 mb-30">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="img img-cover">
-                                        <img src="assets/img/blog/4.jpeg" class="radius-7" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="card-body p-0">
-                                        <small class="d-block date text">
-                                            <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4 fw-bold">news</a>
-                                            <i class="bi bi-clock me-1"></i>
-                                            <a href="#" class="op-8">12 Days ago</a>
-                                        </small>
-                                        <a href="page-single-post-5.html" class="card-title mb-10">VR Game, Oppoturnity & Challenge</a>
-                                        <p class="fs-13px color-666">If there’s one way that wireless technology has changed the way we work, it’s that will everyone [...]</p>
-                                        <div class="auther-comments d-flex small align-items-center justify-content-between op-9">
-                                            <div class="l_side d-flex align-items-center">
-                                                <span
-                                                    class="icon-10 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-blue4 p-2 me-2 text-white">
-                                                    a
-                                                </span>
-                                                <a href="#">
-                                                    <small class="text-muted">By</small> Admin
-                                                </a>
-                                            </div>
-                                            <div class="r-side mt-1">
-                                                <i class="bi bi-chat-left-text me-1"></i>
-                                                <a href="#">24</a>
-                                                <i class="bi bi-eye ms-4 me-1"></i>
-                                                <a href="#">774k</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 bg-transparent rounded-0 border-bottom brd-gray pb-30 mb-30">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="img img-cover">
-                                        <img src="assets/img/blog/10.png" class="radius-7" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="card-body p-0">
-                                        <small class="d-block date text">
-                                            <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4 fw-bold">tips
-                                                & tricks</a>
-                                            <i class="bi bi-clock me-1"></i>
-                                            <a href="#" class="op-8">12 Days ago</a>
-                                        </small>
-                                        <a href="page-single-post-5.html" class="card-title mb-10">6 Tips To Help You Build Your Social Media Effeciency & Better</a>
-                                        <p class="fs-13px color-666">If there’s one way that wireless technology has changed the way we work, it’s that will everyone [...]</p>
-                                        <div class="auther-comments d-flex small align-items-center justify-content-between op-9">
-                                            <div class="l_side d-flex align-items-center">
-                                                <span
-                                                    class="icon-10 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-blue4 p-2 me-2 text-white">
-                                                    a
-                                                </span>
-                                                <a href="#">
-                                                    <small class="text-muted">By</small> Admin
-                                                </a>
-                                            </div>
-                                            <div class="r-side mt-1">
-                                                <i class="bi bi-chat-left-text me-1"></i>
-                                                <a href="#">24</a>
-                                                <i class="bi bi-eye ms-4 me-1"></i>
-                                                <a href="#">774k</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 bg-transparent rounded-0 border-bottom brd-gray pb-30 mb-30">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="img img-cover">
-                                        <img src="assets/img/blog/11.png" class="radius-7" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="card-body p-0">
-                                        <small class="d-block date text">
-                                            <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4 fw-bold">tips
-                                                & tricks</a>
-                                            <i class="bi bi-clock me-1"></i>
-                                            <a href="#" class="op-8">12 Days ago</a>
-                                        </small>
-                                        <a href="page-single-post-5.html" class="card-title mb-10">The New Trend Of Marketing With Tiktok, Should Or Not?</a>
-                                        <p class="fs-13px color-666">If there’s one way that wireless technology has changed the way we work, it’s that will everyone [...]</p>
-                                        <div class="auther-comments d-flex small align-items-center justify-content-between op-9">
-                                            <div class="l_side d-flex align-items-center">
-                                                <span
-                                                    class="icon-10 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-blue4 p-2 me-2 text-white">
-                                                    a
-                                                </span>
-                                                <a href="#">
-                                                    <small class="text-muted">By</small> Admin
-                                                </a>
-                                            </div>
-                                            <div class="r-side mt-1">
-                                                <i class="bi bi-chat-left-text me-1"></i>
-                                                <a href="#">24</a>
-                                                <i class="bi bi-eye ms-4 me-1"></i>
-                                                <a href="#">774k</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 bg-transparent rounded-0 border-bottom brd-gray pb-30 mb-30">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="img img-cover">
-                                        <img src="assets/img/blog/9.png" class="radius-7" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="card-body p-0">
-                                        <small class="d-block date text">
-                                            <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4 fw-bold">tips
-                                                & tricks</a>
-                                            <i class="bi bi-clock me-1"></i>
-                                            <a href="#" class="op-8">12 Days ago</a>
-                                        </small>
-                                        <a href="page-single-post-5.html" class="card-title mb-10">Workflow Strategy For E-Shop</a>
-                                        <p class="fs-13px color-666">If there’s one way that wireless technology has changed the way we work, it’s that will everyone [...]</p>
-                                        <div class="auther-comments d-flex small align-items-center justify-content-between op-9">
-                                            <div class="l_side d-flex align-items-center">
-                                                <span
-                                                    class="icon-10 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-blue4 p-2 me-2 text-white">
-                                                    a
-                                                </span>
-                                                <a href="#">
-                                                    <small class="text-muted">By</small> Admin
-                                                </a>
-                                            </div>
-                                            <div class="r-side mt-1">
-                                                <i class="bi bi-chat-left-text me-1"></i>
-                                                <a href="#">24</a>
-                                                <i class="bi bi-eye ms-4 me-1"></i>
-                                                <a href="#">774k</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 bg-transparent rounded-0 border-bottom brd-gray pb-30 mb-30">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="img img-cover">
-                                        <img src="assets/img/blog/3.jpeg" class="radius-7" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="card-body p-0">
-                                        <small class="d-block date text">
-                                            <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4 fw-bold">tips
-                                                & tricks</a>
-                                            <i class="bi bi-clock me-1"></i>
-                                            <a href="#" class="op-8">12 Days ago</a>
-                                        </small>
-                                        <a href="page-single-post-5.html" class="card-title mb-10">Wireframe For UI/UX</a>
-                                        <p class="fs-13px color-666">If there’s one way that wireless technology has changed the way we work, it’s that will everyone [...]</p>
-                                        <div class="auther-comments d-flex small align-items-center justify-content-between op-9">
-                                            <div class="l_side d-flex align-items-center">
-                                                <span
-                                                    class="icon-10 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-blue4 p-2 me-2 text-white">
-                                                    a
-                                                </span>
-                                                <a href="#">
-                                                    <small class="text-muted">By</small> Admin
-                                                </a>
-                                            </div>
-                                            <div class="r-side mt-1">
-                                                <i class="bi bi-chat-left-text me-1"></i>
-                                                <a href="#">24</a>
-                                                <i class="bi bi-eye ms-4 me-1"></i>
-                                                <a href="#">774k</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card border-0 bg-transparent rounded-0 pb-30 mb-30 mb-lg-0 pb-lg-0">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="img img-cover">
-                                        <img src="assets/img/blog/12.png" class="radius-7" alt="...">
-                                    </div>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="card-body p-0">
-                                        <small class="d-block date text">
-                                            <a href="#" class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4 fw-bold">tips
-                                                & tricks</a>
-                                            <i class="bi bi-clock me-1"></i>
-                                            <a href="#" class="op-8">12 Days ago</a>
-                                        </small>
-                                        <a href="page-single-post-5.html" class="card-title mb-10">Freelancer Days 2023, What’s new?</a>
-                                        <p class="fs-13px color-666">If there’s one way that wireless technology has changed the way we work, it’s that will everyone [...]</p>
-                                        <div class="auther-comments d-flex small align-items-center justify-content-between op-9">
-                                            <div class="l_side d-flex align-items-center">
-                                                <span
-                                                    class="icon-10 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-blue4 p-2 me-2 text-white">
-                                                    a
-                                                </span>
-                                                <a href="#">
-                                                    <small class="text-muted">By</small> Admin
-                                                </a>
-                                            </div>
-                                            <div class="r-side mt-1">
-                                                <i class="bi bi-chat-left-text me-1"></i>
-                                                <a href="#">24</a>
-                                                <i class="bi bi-eye ms-4 me-1"></i>
-                                                <a href="#">774k</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+               <div class="col-lg-8">
+    @foreach($blogs as $blog)
+        <div class="card border-0 bg-transparent rounded-0 border-bottom brd-gray pb-30 mb-30">
+            <div class="row">
+                {{-- Gambar --}}
+                <div class="col-lg-5">
+                    <div class="img img-cover">
+                        <img src="{{ $blog->gambar ? asset('storage/'.$blog->gambar) : asset('assets/img/default.jpg') }}"
+                            class="radius-7" alt="{{ $blog->nama }}">
+                    </div>
+                </div>
 
-                        <div class="pagination style-5 color-4 justify-content-center mt-60">
-                            <a href="#" class="active">
-                                <span>1</span>
-                            </a>
-                            <a href="#">
-                                <span>2</span>
-                            </a>
-                            <a href="#">
-                                <span>3</span>
-                            </a>
-                            <a href="#">
-                                <span>4</span>
-                            </a>
-                            <a href="#">
-                                <span>...</span>
-                            </a>
-                            <a href="#">
-                                <span>20</span>
-                            </a>
-                            <a href="#">
-                                <span class="text">next <i class="fas fa-chevron-right"></i> </span>
-                            </a>
+                {{-- Konten --}}
+                <div class="col-lg-7">
+                    <div class="card-body p-0">
+                        {{-- Kategori & Waktu --}}
+                        <small class="d-block date text">
+                            <span class="text-uppercase border-end brd-gray pe-3 me-3 color-blue4 fw-bold">
+                                {{ $blog->kategori->nama ?? 'Tanpa Kategori' }}
+                            </span>
+                            <i class="bi bi-clock me-1"></i>
+                            <span class="op-8">{{ $blog->created_at->diffForHumans() }}</span>
+                        </small>
+
+                        {{-- Judul --}}
+                        <a href="{{ route('blog.detail', $blog->id) }}" class="card-title mb-10 d-block fw-bold fs-5">
+                            {{ $blog->nama }}
+                        </a>
+
+                        {{-- Deskripsi singkat --}}
+                        <p class="fs-13px color-666">
+                            {{ Str::limit(strip_tags($blog->deskripsi), 100, '...') }}
+                        </p>
+
+                        {{-- Admin + Komentar statis + Views --}}
+                        <div class="auther-comments d-flex small align-items-center justify-content-between op-9">
+                            <div class="l_side d-flex align-items-center">
+                                <span class="icon-10 rounded-circle d-inline-flex justify-content-center align-items-center text-uppercase bg-blue4 p-2 me-2 text-white">
+                                    A
+                                </span>
+                                <span>
+                                    <small class="text-muted">By</small> Admin
+                                </span>
+                            </div>
+                            <div class="r-side mt-1">
+                                <i class="bi bi-chat-left-text me-1"></i>
+                                <span>24</span> {{-- komentar statis --}}
+                                <i class="bi bi-eye ms-4 me-1"></i>
+                                <span>{{ $blog->dilihat ?? 0 }}</span>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+    {{-- Pagination --}}
+    <div class="mt-4">
+        {{ $blogs->links('layouts.custom-pagination') }}
+    </div>
+                </div>
+
+                    </div>
+
                 </div>
             </div>
         </section>
