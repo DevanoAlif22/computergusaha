@@ -9,38 +9,47 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     // Tampilkan semua kategori
-    public function index()
-    {
-        $categories = Category::all();
-        return view('admin.category.index', compact('categories'));
+public function index(Request $request)
+{
+    $q = $request->input('q');
+    $categories = Category::query();
+
+    if ($q) {
+        $categories->where('name', 'like', '%' . $q . '%');
     }
 
+    $categories = $categories->orderBy('id', 'desc')->paginate(10);
+
+    return view('admin.category.index', compact('categories', 'q'));
+}
+
+
     // Simpan kategori baru
-    public function store(Request $request)
+ public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255', 'unique:categories,name'],
         ]);
 
-        Category::create([
-            'name' => $request->name,
-        ]);
+        Category::create($validated);
 
-        return redirect()->route('admin.category.index')->with('success', 'Kategori berhasil ditambahkan');
+        return redirect()
+            ->route('admin.category.index')
+            ->with('success', 'Kategori berhasil ditambahkan.');
     }
 
     // Update kategori
     public function update(Request $request, Category $category)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255', 'unique:categories,name,' . $category->id],
         ]);
 
-        $category->update([
-            'name' => $request->name,
-        ]);
+        $category->update($validated);
 
-        return redirect()->route('admin.category.index')->with('success', 'Kategori berhasil diperbarui');
+        return redirect()
+            ->route('admin.category.index')
+            ->with('success', 'Kategori berhasil diperbarui.');
     }
 
     // Hapus kategori
@@ -48,6 +57,8 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('admin.category.index')->with('success', 'Kategori berhasil dihapus');
+        return redirect()
+            ->route('admin.category.index')
+            ->with('success', 'Kategori berhasil dihapus.');
     }
 }

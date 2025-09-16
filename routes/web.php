@@ -92,11 +92,13 @@ Route::get('/about-5', fn() => view('page-about-5'));
 Route::get('/services-5', fn() => view('page-services-5'));
 Route::get('/shop-5', fn() => view('page-shop-5'));
 Route::get('/single-project-5', fn() => view('page-single-project-5'));
-// Route::get('/portfolio', fn() => view('page-portfolio'));
+// route user list portofolio,karir,blog
 Route::get('/portfolio', [FrontController::class, 'listPortofolio']);
 Route::get('/portfolio/{id}', [FrontController::class, 'detailPortofolio'])->name('portfolio.detail');
 Route::get('/karir', [FrontController::class, 'listKarir'])->name('karir.index');
 Route::get('/karir/{id}', [FrontController::class, 'detailKarir'])->name('karir.detail');
+Route::get('/blog', [FrontController::class, 'listBlog'])->name('blog.index');
+Route::get('/blog/{id}', [FrontController::class, 'detailBlog'])->name('blog.detail');
 
 
 
@@ -109,7 +111,7 @@ Route::get('/portfolio-load-more', fn() => view('page-portfolio-5'));
 | Blog & Konten
 |--------------------------------------------------------------------------
 */
-Route::get('/blog', fn() => view('blog'));
+
 Route::get('/blog-5', fn() => view('page-blog-5'));
 Route::get('/blog-app', fn() => view('page-blog-app'));
 
@@ -175,6 +177,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('category', CategoryController::class, ['as' => 'admin']);
     Route::resource('karir', KarirController::class, ['as' => 'admin']);
 });
+
 /*
 |--------------------------------------------------------------------------
 | Auth Routes (Laravel Breeze)

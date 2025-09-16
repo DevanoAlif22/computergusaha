@@ -9,13 +9,27 @@ use App\Http\Controllers\Controller;
 
 class PortofolioController extends Controller
 {
-    public function index()
-    {
+  public function index(Request $request)
+{
+    $q = trim((string) $request->query('q', ''));
 
-        $portofolio = Portofolio::with('category')->get();
-        $categories = Category::all();
-        return view('admin.portofolio.index', compact('portofolio', 'categories'));
-    }
+    $portofolio = Portofolio::with('category')
+        ->when($q !== '', function ($query) use ($q) {
+            $query->where('judul', 'like', "%{$q}%")
+                  ->orWhere('deskripsi', 'like', "%{$q}%")
+                  ->orWhereHas('category', function ($q2) use ($q) {
+                      $q2->where('name', 'like', "%{$q}%");
+                  });
+        })
+        ->orderByDesc('created_at')
+        ->paginate(10)
+        ->withQueryString();
+
+   $categories = Category::orderBy('name')->get();
+
+    return view('admin.portofolio.index', compact('portofolio', 'categories', 'q'));
+}
+
 
 
  public function store(Request $request)

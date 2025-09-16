@@ -8,24 +8,19 @@ use Illuminate\Validation\Rule;
 
 class KarirController extends Controller
 {
-       public function index()
-    {
-        $karirs = Karir::all();
-        return view('admin.karir.index', compact('karirs'));
-    }
-    public function store(Request $request)
+
+public function index(Request $request)
 {
-    $validated = $request->validate([
-        'nama' => ['required', 'string', 'max:255'],
-        'deskripsi' => ['nullable', 'string'],
-        'jenis' => ['required', 'string', 'max:255'],
-    ]);
-
-    Karir::create($validated);
-
-    return redirect()->route('admin.karir.index')->with('success', 'Karir berhasil ditambahkan.');
+    $q = $request->input('q');
+    $karirs = Karir::query();
+    if ($q) {
+        $karirs->where('nama', 'like', '%' . $q . '%');
+    }
+    $karirs = $karirs->orderBy('id', 'desc')->paginate(10);
+    return view('admin.karir.index', compact('karirs', 'q'));
 }
-public function update(Request $request, $id)
+
+public function store(Request $request)
 {
     $validated = $request->validate([
         'nama' => ['required', 'string', 'max:255'],
@@ -46,17 +41,48 @@ public function update(Request $request, $id)
         ],
     ]);
 
-    $karir = Karir::findOrFail($id);
+    Karir::create($validated);
+
+    return redirect()
+        ->route('admin.karir.index')
+        ->with('success', 'Karir berhasil ditambahkan.');
+}
+
+public function update(Request $request, Karir $karir)
+{
+    $validated = $request->validate([
+        'nama' => ['required', 'string', 'max:255'],
+        'deskripsi' => ['nullable', 'string'],
+        'jenis' => [
+            'required',
+            'string',
+            Rule::in([
+                'part_time',
+                'contract',
+                'internship',
+                'freelance',
+                'temporary',
+                'remote',
+                'hybrid',
+                'volunteer',
+            ]),
+        ],
+    ]);
+
     $karir->update($validated);
 
-    return redirect()->route('admin.karir.index')->with('success', 'Karir berhasil diperbarui.');
+    return redirect()
+        ->route('admin.karir.index')
+        ->with('success', 'Karir berhasil diperbarui.');
 }
-public function destroy($id)
+
+public function destroy(Karir $karir)
 {
-    $karir = Karir::findOrFail($id);
     $karir->delete();
 
-    return redirect()->route('admin.karir.index')->with('success', 'Karir berhasil dihapus.');
+    return redirect()
+        ->route('admin.karir.index')
+        ->with('success', 'Karir berhasil dihapus.');
 }
 
 }
