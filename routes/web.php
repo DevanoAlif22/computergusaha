@@ -1,14 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\KarirController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\LayananController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PortofolioController;
 use App\Http\Controllers\Admin\KategoriBlogController;
 use App\Http\Controllers\Admin\KategoriLayananController;
@@ -28,9 +29,9 @@ Route::get('/landing-preview', fn() => view('index'));
 | Dashboard (Hanya untuk user yang sudah login)
 |--------------------------------------------------------------------------
 */
-Route::get('/dashboard', fn() => view('Admin.IndexAdmin'))
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+// Route::get('/dashboard', fn() => view('Admin.IndexAdmin'))
+//     ->middleware(['auth', 'verified'])
+//     ->name('dashboard');
 
 
 /*
@@ -163,16 +164,18 @@ Route::get('/servicesdetailsomail', fn() => view('servicesdetailsomail'));
 //Admin
 
 Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('portofolio', PortofolioController::class, ['as' => 'admin']);
     Route::resource('kategori-layanan', KategoriLayananController::class, ['as' => 'admin']);
     Route::resource('category', CategoryController::class, ['as' => 'admin']);
     Route::resource('layanan', LayananController::class, ['as' => 'admin']);
     Route::resource('kategori-blog', KategoriBlogController::class, ['as' => 'admin']);
+    Route::resource('profile', ProfileController::class, ['as' => 'admin']);
     Route::resource('blog', BlogController::class, ['as' => 'admin']);
     Route::post('upload/summernote', [UploadController::class, 'summernote'])
         ->name('admin.upload.summernote');
-      Route::resource('category', CategoryController::class, ['as' => 'admin']);
-      Route::resource('karir', KarirController::class, ['as' => 'admin']);
+    Route::resource('category', CategoryController::class, ['as' => 'admin']);
+    Route::resource('karir', KarirController::class, ['as' => 'admin']);
 });
 
 /*

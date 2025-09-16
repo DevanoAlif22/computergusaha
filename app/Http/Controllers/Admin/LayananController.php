@@ -9,26 +9,34 @@ use Illuminate\Http\Request;
 
 class LayananController extends Controller
 {
+
     public function index(Request $request)
     {
         $q = trim((string) $request->query('q', ''));
+        $kategoriId = $request->query('kategori');
 
         $layanans = Layanan::with('kategori')
             ->when($q !== '', function ($query) use ($q) {
-                $query->where('nama', 'like', "%{$q}%")
-                    ->orWhereHas('kategori', function ($q2) use ($q) {
-                        $q2->where('nama', 'like', "%{$q}%");
-                    });
+                // group kondisi pencarian agar tidak bentrok dengan filter lain
+                $query->where(function ($q1) use ($q) {
+                    $q1->where('nama', 'like', "%{$q}%")
+                        ->orWhereHas('kategori', function ($q2) use ($q) {
+                            $q2->where('nama', 'like', "%{$q}%");
+                        });
+                });
+            })
+            ->when($kategoriId, function ($query) use ($kategoriId) {
+                $query->where('kategorilayanan_id', $kategoriId);
             })
             ->orderByDesc('created_at')
             ->paginate(10)
-            ->withQueryString(); // pertahankan ?q=... di pagination
+            ->withQueryString();
 
-        // untuk dropdown kategori di modal tambah/edit
         $kategoris = KategoriLayanan::orderBy('nama')->get();
 
-        return view('admin.layanan.index', compact('layanans', 'kategoris', 'q'));
+        return view('admin.layanan.index', compact('layanans', 'kategoris', 'q', 'kategoriId'));
     }
+
 
     public function store(Request $request)
     {
