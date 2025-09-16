@@ -12,23 +12,28 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         $q = trim((string) $request->query('q', ''));
+        $kategoriId = $request->query('kategori');
 
         $blogs = Blog::with('kategori')
             ->when($q !== '', function ($query) use ($q) {
-                $query->where('nama', 'like', "%{$q}%")
-                    ->orWhere('deskripsi', 'like', "%{$q}%")
-                    ->orWhereHas('kategori', function ($q2) use ($q) {
-                        $q2->where('nama', 'like', "%{$q}%");
-                    });
+                $query->where(function ($q1) use ($q) {
+                    $q1->where('nama', 'like', "%{$q}%")
+                        ->orWhere('deskripsi', 'like', "%{$q}%")
+                        ->orWhereHas('kategori', function ($q2) use ($q) {
+                            $q2->where('nama', 'like', "%{$q}%");
+                        });
+                });
+            })
+            ->when($kategoriId, function ($query) use ($kategoriId) {
+                $query->where('kategoriblog_id', $kategoriId);
             })
             ->orderByDesc('created_at')
             ->paginate(10)
             ->withQueryString();
 
-        // untuk dropdown kategori di modal
         $kategoris = KategoriBlog::orderBy('nama')->get();
 
-        return view('admin.blog.index', compact('blogs', 'kategoris', 'q'));
+        return view('admin.blog.index', compact('blogs', 'kategoris', 'q', 'kategoriId'));
     }
 
     public function store(Request $request)

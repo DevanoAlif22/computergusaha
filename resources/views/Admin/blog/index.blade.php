@@ -7,25 +7,37 @@
   <h4 class="mb-3">Manajemen Blog</h4>
 
   {{-- Baris aksi: Tambah (kiri) & Cari (kanan) --}}
-  <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap mb-3">
+  <div class="d-flex  align-items-center justify-content-between gap-2 flex-wrap mb-3">
     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahModal">
       + Tambah Blog
     </button>
 
-    <form method="GET" action="{{ route('admin.blog.index') }}" class="d-flex align-items-center gap-2 ms-auto">
-      <input type="search"
-             name="q"
-             class="form-control"
-             placeholder="Cari judul/kategori/deskripsi…"
-             value="{{ $q ?? request('q') }}"
-             style="min-width:280px">
-      @if(($q ?? request('q')) !== null && ($q ?? request('q')) !== '')
-        <a href="{{ route('admin.blog.index') }}" class="btn btn-outline-secondary">Reset</a>
-      @endif
-      <button type="submit" class="btn btn-primary d-flex align-items-center">
-        <i class="bi bi-search me-2"></i> Cari
-      </button>
-    </form>
+    <form method="GET" action="{{ route('admin.blog.index') }}" class="d-flex align-items-center gap-2 w-full">
+        <input type="search"
+                name="q"
+                class="form-control"
+                placeholder="Cari judul/kategori/deskripsi…"
+                value="{{ $q ?? request('q') }}"
+                style="min-width:220px">
+
+        <select name="kategori" class="form-select" style="min-width:180px">
+            <option value="">-- Semua Kategori --</option>
+            @foreach($kategoris as $kat)
+            <option value="{{ $kat->id }}" {{ request('kategori') == $kat->id ? 'selected' : '' }}>
+                {{ $kat->nama }}
+            </option>
+            @endforeach
+        </select>
+
+        @if(($q ?? request('q')) !== '' || request('kategori'))
+            <a href="{{ route('admin.blog.index') }}" class="btn btn-outline-secondary">Reset</a>
+        @endif
+
+        <button type="submit" class="btn btn-primary d-flex align-items-center">
+            <i class="bi bi-search me-2"></i> Cari
+        </button>
+        </form>
+
   </div>
 
   {{-- (Opsional) ringkasan total & keyword --}}

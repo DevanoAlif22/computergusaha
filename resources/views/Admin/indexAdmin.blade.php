@@ -60,286 +60,163 @@
     </div><!-- End Search Bar -->
 
     <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
+  <ul class="d-flex align-items-center">
+    <li class="nav-item dropdown pe-3">
+      <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+        @php
+          $me = auth()->user();
+          $avatar = $me?->avatar
+            ? asset('storage/'.$me->avatar)
+            : asset('assets/img/profile-img.jpg'); // fallback
+        @endphp
+        <img src="{{ $avatar }}" alt="Profile" class="rounded-circle" style="object-fit:cover; width:36px; height:36px;">
+        <span class="d-none d-md-block dropdown-toggle ps-2">
+          {{ $me?->name ?? 'User' }}
+        </span>
+      </a>
 
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
+      <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+        <li class="dropdown-header">
+          <h6 class="mb-0">{{ $me?->name ?? 'User' }}</h6>
+          <span class="text-muted small">
+            {{ $me?->email ?? '—' }}
+          </span>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <li>
+          <a class="dropdown-item d-flex align-items-center" href="{{ route('profile.edit') }}">
+            <i class="bi bi-person me-2"></i>
+            <span>Profil Saya</span>
           </a>
-        </li><!-- End Search Icon-->
+        </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
+        <li><hr class="dropdown-divider"></li>
 
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
-
-        <li class="nav-item dropdown">
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
-
-        <li class="nav-item dropdown pe-3">
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Users</span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>Profil</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-gear"></i>
-                <span>Pengaturan Akun</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>Butuh Bantuan?</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li>
-              <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="dropdown-item d-flex align-items-center">
-                  <i class="bi bi-box-arrow-right"></i>
-                  <span>Keluar</span>
-                </button>
-              </form>
-            </li>
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
+        <li>
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="dropdown-item d-flex align-items-center">
+              <i class="bi bi-box-arrow-right me-2"></i>
+              <span>Keluar</span>
+            </button>
+          </form>
+        </li>
       </ul>
-    </nav><!-- End Icons Navigation -->
+    </li>
+  </ul>
+</nav>
 
   </header><!-- End Header -->
 
-  <!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
+   <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
   <ul class="sidebar-nav" id="sidebar-nav">
-
-    <!-- Dashboard -->
+    {{-- Dashboard --}}
     <li class="nav-item">
-      <a class="nav-link" href="dashboard.html">
+      <a class="nav-link {{ request()->routeIs('dashboard') ? '' : 'collapsed' }}" href="{{ route('dashboard') }}">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
-    </li><!-- End Dashboard Nav -->
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('admin.profile.*') ? '' : 'collapsed' }}"
+            href="{{ route('admin.profile.index') }}">
+            <i class="bi bi-person-circle"></i>
+            <span>Profil Saya</span>
+        </a>
+    </li>
 
     <li class="nav-heading">Manajemen Konten</li>
 
-    <!-- Services -->
+    {{-- Kategori Layanan --}}
     <li class="nav-item">
-      <a class="nav-link collapsed" href="services.html">
-        <i class="bi bi-gear"></i>
-        <span>Services</span>
+      <a class="nav-link {{ request()->routeIs('admin.kategori-layanan.*') ? '' : 'collapsed' }}" href="{{ route('admin.kategori-layanan.index') }}">
+        <i class="bi bi-diagram-3"></i>
+        <span>Kategori Layanan</span>
       </a>
-    </li><!-- End Services Nav -->
+    </li>
 
-    <!-- Portfolio (gunakan route Laravel) -->
+    {{-- Layanan --}}
     <li class="nav-item">
-      <a class="nav-link collapsed" href="{{ route('admin.portofolio.index') }}">
+      <a class="nav-link {{ request()->routeIs('admin.layanan.*') ? '' : 'collapsed' }}" href="{{ route('admin.layanan.index') }}">
+        <i class="bi bi-wrench"></i>
+        <span>Layanan</span>
+      </a>
+    </li>
+
+    {{-- Category (umum/katalog) --}}
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('admin.category.*') ? '' : 'collapsed' }}" href="{{ route('admin.category.index') }}">
+        <i class="bi bi-tags"></i>
+        <span>Category</span>
+      </a>
+    </li>
+
+    {{-- Portofolio --}}
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('admin.portofolio.*') ? '' : 'collapsed' }}" href="{{ route('admin.portofolio.index') }}">
         <i class="bi bi-briefcase"></i>
         <span>Portofolio</span>
       </a>
-    </li><!-- End Portfolio Nav -->
+    </li>
 
-    <!-- Blog / Artikel -->
+    {{-- Kategori Blog --}}
     <li class="nav-item">
-      <a class="nav-link collapsed" href="blog.html">
+      <a class="nav-link {{ request()->routeIs('admin.kategori-blog.*') ? '' : 'collapsed' }}" href="{{ route('admin.kategori-blog.index') }}">
+        <i class="bi bi-collection"></i>
+        <span>Kategori Blog</span>
+      </a>
+    </li>
+
+    {{-- Blog --}}
+    <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('admin.blog.*') ? '' : 'collapsed' }}" href="{{ route('admin.blog.index') }}">
         <i class="bi bi-journal-text"></i>
         <span>Blog</span>
       </a>
-    </li><!-- End Blog Nav -->
+    </li>
 
-    <!-- Halaman Statis -->
+    {{-- Halaman Statis (jika nanti pakai resource pages.*, sesuaikan) --}}
     <li class="nav-item">
       <a class="nav-link collapsed" href="pages.html">
         <i class="bi bi-file-earmark-text"></i>
         <span>Halaman Statis</span>
       </a>
-    </li><!-- End Pages Nav -->
+    </li>
 
-    <!-- Kontak -->
+    {{-- Kontak --}}
     <li class="nav-item">
       <a class="nav-link collapsed" href="contacts.html">
         <i class="bi bi-envelope"></i>
         <span>Kontak</span>
       </a>
-    </li><!-- End Contacts Nav -->
+    </li>
 
-    <li class="nav-heading">Manajemen Pengguna</li>
+    {{-- <li class="nav-heading">Manajemen Pengguna</li> --}}
 
-    <!-- User Management -->
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="users.html">
-        <i class="bi bi-person"></i>
+    {{-- Users (kalau sudah ada route users.* bisa di-aktifkan state-nya) --}}
+    {{-- <li class="nav-item">
+      <a class="nav-link {{ request()->routeIs('users.*') ? '' : 'collapsed' }}" href="{{ url('users') }}">
+        <i class="bi bi-people"></i>
         <span>User</span>
       </a>
-    </li><!-- End User Nav -->
+    </li> --}}
 
     <li class="nav-heading">Pengaturan</li>
 
-    <!-- Settings -->
+    {{-- Settings (kalau nanti ada route settings.* tinggal ganti href + state) --}}
     <li class="nav-item">
       <a class="nav-link collapsed" href="settings.html">
         <i class="bi bi-sliders"></i>
         <span>Pengaturan Website</span>
       </a>
-    </li><!-- End Settings Nav -->
-
+    </li>
   </ul>
 </aside>
-<!-- End Sidebar -->
+  <!-- End Sidebar -->
+
 
 
   <main id="main" class="main">
