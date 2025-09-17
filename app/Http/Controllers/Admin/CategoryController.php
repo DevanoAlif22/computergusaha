@@ -11,18 +11,26 @@ class CategoryController extends Controller
     // Tampilkan semua kategori
 public function index(Request $request)
 {
-    $q = $request->input('q');
+    $q    = $request->input('q');
+    $sort = strtolower($request->query('sort', 'desc')); // default desc
+
+    if (!in_array($sort, ['asc', 'desc'], true)) {
+        $sort = 'desc';
+    }
+
     $categories = Category::query();
 
     if ($q) {
         $categories->where('name', 'like', '%' . $q . '%');
     }
 
-    $categories = $categories->orderBy('id', 'desc')->paginate(10);
+    $categories = $categories
+        ->orderBy('id', $sort) // urut berdasarkan id (baru/lama)
+        ->paginate(10)
+        ->withQueryString();
 
-    return view('admin.category.index', compact('categories', 'q'));
+    return view('admin.category.index', compact('categories', 'q', 'sort'));
 }
-
 
     // Simpan kategori baru
  public function store(Request $request)
