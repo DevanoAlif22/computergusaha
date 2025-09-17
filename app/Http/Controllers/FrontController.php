@@ -4,13 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Karir;
+use App\Models\Layanan;
 use App\Models\Category;
-use App\Models\KategoriBlog;
 use App\Models\Portofolio;
+use App\Models\KategoriBlog;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
+public function index()
+{
+    $layanans = Layanan::with('kategori')->get();
+    $portofolios = Portofolio::with('category')->latest()->get();
+    $blogs = Blog::with('kategori')->latest()->take(5)->get(); // ambil 5 terbaru
+
+    return view('index', compact('layanans', 'portofolios', 'blogs'));
+}
+
     public function listPortofolio()
 {
     $data = Portofolio::with('category')->get(); // biar ga query ulang2
