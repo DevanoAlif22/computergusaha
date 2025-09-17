@@ -11,10 +11,25 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-        $q = trim((string) $request->query('q', ''));
+        $q          = trim((string) $request->query('q', ''));
         $kategoriId = $request->query('kategori');
 
-        $blogs = Blog::with('kategori')
+        // whitelist kolom sortir
+        $allowedSortBy = ['created_at', 'nama', 'kategori', 'dilihat'];
+        $sortBy = $request->query('sort_by', 'created_at');
+        if (!in_array($sortBy, $allowedSortBy, true)) {
+            $sortBy = 'created_at';
+        }
+
+        // arah sortir
+        $sort = strtolower($request->query('sort', 'desc'));
+        if (!in_array($sort, ['asc', 'desc'], true)) {
+            $sort = 'desc';
+        }
+
+        $blogs = Blog::query()
+            ->with('kategori')
+            // Pencarian (judul, deskripsi, nama kategori)
             ->when($q !== '', function ($query) use ($q) {
                 $query->where(function ($q1) use ($q) {
                     $q1->where('nama', 'like', "%{$q}%")
@@ -24,16 +39,28 @@ class BlogController extends Controller
                         });
                 });
             })
+            // Filter kategori
             ->when($kategoriId, function ($query) use ($kategoriId) {
                 $query->where('kategoriblog_id', $kategoriId);
             })
-            ->orderByDesc('created_at')
+            // Sorting
+            ->when(
+                $sortBy === 'kategori', // urut berdasar nama kategori
+                function ($query) use ($sort) {
+                    $query->leftJoin('kategori_blogs as kb', 'kb.id', '=', 'blogs.kategoriblog_id')
+                        ->select('blogs.*')
+                        ->orderBy('kb.nama', $sort);
+                },
+                function ($query) use ($sortBy, $sort) {
+                    $query->orderBy($sortBy, $sort);
+                }
+            )
             ->paginate(10)
             ->withQueryString();
 
-        $kategoris = KategoriBlog::orderBy('nama')->get();
+        $kategoris = \App\Models\KategoriBlog::orderBy('nama')->get();
 
-        return view('admin.blog.index', compact('blogs', 'kategoris', 'q', 'kategoriId'));
+        return view('admin.blog.index', compact('blogs', 'kategoris', 'q', 'kategoriId', 'sortBy', 'sort'));
     }
 
     public function store(Request $request)
