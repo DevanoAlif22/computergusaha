@@ -6,26 +6,44 @@
 <div class="container">
   <h4 class="mb-3">Manajemen Portofolio</h4>
 
-  <div class="d-flex justify-content-between align-items-center gap-2 flex-wrap mb-3">
-    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahModal">
-      + Tambah Portofolio
-    </button>
+  <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap mb-3">
+  <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahModal">
+    + Tambah Portofolio
+  </button>
 
-    <form method="GET" action="{{ route('admin.portofolio.index') }}" class="d-flex align-items-center gap-2 ms-auto">
+  <form method="GET" action="{{ route('admin.portofolio.index') }}" class="d-flex align-items-center gap-2 w-full">
       <input type="search"
              name="q"
              class="form-control"
-             placeholder="Cari portofolio…"
+             placeholder="Cari judul/kategori/deskripsi…"
              value="{{ $q ?? request('q') }}"
-             style="min-width:260px">
-      @if(($q ?? request('q')) !== null && ($q ?? request('q')) !== '')
-        <a href="{{ route('admin.portofolio.index') }}" class="btn btn-outline-secondary">Reset</a>
+             style="min-width:220px">
+
+      <select name="sort" class="form-select">
+          <option value="desc" {{ ($sort ?? 'desc') === 'desc' ? 'selected' : '' }}>Terbaru</option>
+          <option value="asc"  {{ ($sort ?? '') === 'asc'  ? 'selected' : '' }}>Terlama</option>
+      </select>
+
+      <select name="category" class="form-select" style="min-width:180px">
+          <option value="">-- Semua Kategori --</option>
+          @foreach($categories as $cat)
+              <option value="{{ $cat->id }}" {{ request('category') == $cat->id ? 'selected' : '' }}>
+                  {{ $cat->name }}
+              </option>
+          @endforeach
+      </select>
+
+      @if(($q ?? request('q')) !== '' || request('category'))
+          <a href="{{ route('admin.portofolio.index') }}" class="btn btn-outline-secondary">Reset</a>
       @endif
-      <button type="submit" class="d-flex btn btn-primary">
-        <i class="bi bi-search me-2"></i> Cari
+
+      <button type="submit" class="btn btn-primary d-flex align-items-center">
+          <i class="bi bi-search me-2"></i> Cari
       </button>
-    </form>
-  </div>
+  </form>
+</div>
+
+
 
   {{-- Ringkasan total & keyword --}}
   @if(method_exists($portofolio, 'total'))

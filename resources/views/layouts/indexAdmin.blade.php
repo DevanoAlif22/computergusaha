@@ -159,6 +159,14 @@
         <span>Portofolio</span>
       </a>
     </li>
+    {{-- Portofolio --}}
+   <li class="nav-item">
+  <a class="nav-link {{ request()->routeIs('admin.karir.*') ? '' : 'collapsed' }}" href="{{ route('admin.karir.index') }}">
+    <i class="bi bi-person-workspace"></i>
+    <span>Karir</span>
+  </a>
+</li>
+
 
     {{-- Kategori Blog --}}
     <li class="nav-item">
