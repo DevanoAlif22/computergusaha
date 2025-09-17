@@ -46,7 +46,7 @@
              class="btn btn-primary mt-auto">
             Kelola
           </a> --}}
-          <a href=""
+          <a href="{{ route('admin.journey.index') }}"
              class="btn btn-primary mt-auto">
             Kelola
           </a>
@@ -69,30 +69,7 @@
              class="btn btn-primary mt-auto">
             Kelola
           </a> --}}
-          <a href=""
-             class="btn btn-primary mt-auto">
-            Kelola
-          </a>
-        </div>
-      </div>
-    </div>
-
-    {{-- News --}}
-    <div class="col-md-6 col-lg-3">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body d-flex flex-column">
-          <div class="d-flex align-items-center mb-3">
-            <i class="bi bi-newspaper fs-3 me-2"></i>
-            <h5 class="card-title mb-0">News</h5>
-          </div>
-          <p class="card-text text-muted flex-grow-1">
-            Berita & publikasi media terkait perusahaan.
-          </p>
-          {{-- <a href="{{ route('admin.tentang.news.index') }}"
-             class="btn btn-primary mt-auto">
-            Kelola
-          </a> --}}
-          <a href=""
+          <a href="{{ route('admin.partner.index') }}"
              class="btn btn-primary mt-auto">
             Kelola
           </a>

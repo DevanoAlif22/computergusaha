@@ -186,7 +186,7 @@
     </a>
     <ul id="statis-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
         <li>
-        <a href="" class="{{ request()->is('admin/pages/tentang-kami') ? 'active' : '' }}">
+        <a href="{{ route('admin.tentang-kami.index') }}" class="{{ request()->is('admin/tentang-kami') ? 'active' : '' }}">
             <i class="bi bi-circle"></i><span>Tentang Kami</span>
         </a>
         </li>
