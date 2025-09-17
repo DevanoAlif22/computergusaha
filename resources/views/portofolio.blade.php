@@ -71,20 +71,24 @@
                                         <div class="img">
                                             <img src="{{ $item->gambar ? asset('storage/' . $item->gambar) : asset('assets/img/projects/prog/1.jpeg') }}" alt="{{ $item->judul }}">
                                         </div>
+                                        
                                         <div class="info">
                                             <h5>
                                                 <a href="{{ route('portfolio.detail', $item->id) }}"> {{ $item->judul }} </a>
                                             </h5>
-
-                                            <div class="text">
-                                                {!! Str::words($item->deskripsi ?? 'Tidak ada deskripsi.', 50, '...') !!}
-                                            </div>
-
-                                            <div class="tags">
-                                                <a href="#">
+                                            <div class="mt-3 ">
+                                                <a href="#"
+                                                style="background:none; color:#0d6efd; font-weight:600; text-transform:uppercase; text-decoration:none; font-size:14px;">
                                                     {{ $item->category ? $item->category->name : 'Tag' }}
                                                 </a>
                                             </div>
+
+
+                                            <div class="text">
+                                                {{ Str::limit(strip_tags($item->deskripsi), 100, '...') }}
+                                            </div>
+
+                                           
                                         </div>
                                     </div>
                                 </div>

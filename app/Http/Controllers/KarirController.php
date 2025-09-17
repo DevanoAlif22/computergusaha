@@ -11,13 +11,25 @@ class KarirController extends Controller
 
 public function index(Request $request)
 {
-    $q = $request->input('q');
+    $q    = $request->input('q');
+    $sort = strtolower($request->query('sort', 'desc')); // default desc
+
+    if (!in_array($sort, ['asc', 'desc'], true)) {
+        $sort = 'desc';
+    }
+
     $karirs = Karir::query();
+
     if ($q) {
         $karirs->where('nama', 'like', '%' . $q . '%');
     }
-    $karirs = $karirs->orderBy('id', 'desc')->paginate(10);
-    return view('admin.karir.index', compact('karirs', 'q'));
+
+    $karirs = $karirs
+        ->orderBy('id', $sort) // urut berdasarkan id (baru/lama)
+        ->paginate(10)
+        ->withQueryString();
+
+    return view('admin.karir.index', compact('karirs', 'q', 'sort'));
 }
 
 public function store(Request $request)

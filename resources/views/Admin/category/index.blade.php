@@ -4,28 +4,39 @@
 <div class="container">
     <h4 class="mb-3">Manajemen Kategori</h4>
 
-    <!-- Tombol Tambah -->
-<div class="d-flex justify-content-between align-items-center gap-2 flex-wrap mb-3">
+<!-- Tombol Tambah -->
+<!-- Tombol Tambah -->
+<div class="d-flex align-items-center justify-content-between gap-2 flex-wrap mb-3">
   <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahKategoriModal">
     + Tambah Kategori
   </button>
 
-  <form method="GET" action="{{ route('admin.category.index') }}" class="d-flex align-items-center gap-2 ms-auto">
-    <input type="search"
-           name="q"
-           class="form-control"
-           placeholder="Cari kategori…"
-           value="{{ $q ?? request('q') }}"
-           style="min-width:260px">
-    @if(($q ?? request('q')) !== null && ($q ?? request('q')) !== '')
-      <a href="{{ route('admin.category.index') }}" class="btn btn-outline-secondary">Reset</a>
-    @endif
-    <button type="submit" class="d-flex btn btn-primary">
-      <i class="bi bi-search me-2"></i> Cari
-    </button>
+  <form method="GET" action="{{ route('admin.category.index') }}" class="d-flex align-items-center gap-2 w-full">
+      <input type="search"
+             name="q"
+             class="form-control"
+             placeholder="Cari kategori…"
+             value="{{ $q ?? request('q') }}"
+             style="min-width:220px">
+
+      <select name="sort" class="form-select">
+          <option value="desc" {{ ($sort ?? 'desc') === 'desc' ? 'selected' : '' }}>Terbaru</option>
+          <option value="asc"  {{ ($sort ?? '') === 'asc'  ? 'selected' : '' }}>Terlama</option>
+      </select>
+
+      {{-- Tombol reset hanya muncul kalau ada query --}}
+      @if(($q ?? request('q')) !== '' || request('sort') !== 'desc')
+          <a href="{{ route('admin.category.index') }}" class="btn btn-outline-secondary">Reset</a>
+      @endif
+
+      <button type="submit" class="btn btn-primary d-flex align-items-center">
+          <i class="bi bi-search me-2"></i> Cari
+      </button>
   </form>
-  
 </div>
+
+
+
 {{-- Ringkasan total & keyword --}}
 @if(method_exists($categories, 'total'))
     <div class="mb-2 small text-muted">
@@ -41,7 +52,7 @@
         <table class="table table-bordered table-striped align-middle">
             <thead class="table-dark">
                 <tr>
-                    <th>ID</th>
+                    <th>No</th>
                     <th>Nama Kategori</th>
                     <th>Aksi</th>
                 </tr>
@@ -49,7 +60,8 @@
             <tbody>
                 @foreach($categories as $category)
                 <tr>
-                    <td>{{ $category->id }}</td>
+                    <td>{{ $loop->iteration + ($categories->currentPage()-1) * $categories->perPage() }}</td>
+
                     <td>{{ $category->name }}</td>
                     <td style="width: 150px;">
                         <!-- Tombol Edit -->

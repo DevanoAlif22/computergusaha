@@ -9,26 +9,46 @@ use App\Http\Controllers\Controller;
 
 class PortofolioController extends Controller
 {
-  public function index(Request $request)
+public function index(Request $request)
 {
-    $q = trim((string) $request->query('q', ''));
+    $q          = trim((string) $request->query('q', ''));
+    $categoryId = $request->query('category');
+    
+    // whitelist kolom sortir
+    $allowedSortBy = ['created_at', 'judul'];
+    $sortBy = $request->query('sort_by', 'created_at');
+    if (!in_array($sortBy, $allowedSortBy, true)) {
+        $sortBy = 'created_at';
+    }
+
+    // arah sortir
+    $sort = strtolower($request->query('sort', 'desc'));
+    if (!in_array($sort, ['asc', 'desc'], true)) {
+        $sort = 'desc';
+    }
 
     $portofolio = Portofolio::with('category')
         ->when($q !== '', function ($query) use ($q) {
-            $query->where('judul', 'like', "%{$q}%")
-                  ->orWhere('deskripsi', 'like', "%{$q}%")
-                  ->orWhereHas('category', function ($q2) use ($q) {
-                      $q2->where('name', 'like', "%{$q}%");
-                  });
+            $query->where(function ($q1) use ($q) {
+                $q1->where('judul', 'like', "%{$q}%")
+                    ->orWhere('deskripsi', 'like', "%{$q}%")
+                    ->orWhereHas('category', function ($q2) use ($q) {
+                        $q2->where('name', 'like', "%{$q}%");
+                    });
+            });
         })
-        ->orderByDesc('created_at')
+        ->when($categoryId, function ($query) use ($categoryId) {
+            $query->where('category_id', $categoryId);
+        })
+        ->orderBy($sortBy, $sort)
         ->paginate(10)
         ->withQueryString();
 
-   $categories = Category::orderBy('name')->get();
+    $categories = Category::orderBy('name')->get();
 
-    return view('admin.portofolio.index', compact('portofolio', 'categories', 'q'));
+    return view('admin.portofolio.index', compact('portofolio', 'categories', 'q', 'categoryId', 'sortBy', 'sort'));
 }
+
 
 
 
