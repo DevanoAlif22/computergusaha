@@ -19,6 +19,10 @@
              placeholder="Cari kategori…"
              value="{{ $q ?? request('q') }}"
              style="min-width:260px">
+    <select name="sort" class="form-select">
+        <option value="desc" {{ ($sort ?? '') === 'desc' ? 'selected' : '' }}>Terbaru</option>
+        <option value="asc" {{ ($sort ?? '') === 'asc' ? 'selected' : '' }}>Terlama</option>
+    </select>
       @if(($q ?? request('q')) !== null && ($q ?? request('q')) !== '')
         <a href="{{ route('admin.kategori-layanan.index') }}" class="btn btn-outline-secondary">Reset</a>
       @endif

@@ -1,122 +1,98 @@
 @extends('layouts.indexAdmin')
 
-@section('title', 'Blog')
+@section('title', 'CEO')
 
 @section('content')
 <div class="container">
-  <h4 class="mb-3">Manajemen Blog</h4>
+  <h4 class="mb-3">Manajemen CEO</h4>
 
-  {{-- Baris aksi: Tambah (kiri) & Cari (kanan) --}}
-  <div class="d-flex  align-items-center justify-content-between gap-2 flex-wrap mb-3">
+  {{-- Baris aksi: Tambah (kiri) & Cari+Sort (kanan) --}}
+  <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap mb-3">
     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#tambahModal">
-      + Tambah Blog
+      + Tambah CEO
     </button>
 
-    <form method="GET" action="{{ route('admin.blog.index') }}" class="d-flex align-items-center gap-2 w-full">
-        <input type="search"
-                name="q"
-                class="form-control"
-                placeholder="Cari judul/kategori/deskripsi…"
-                value="{{ $q ?? request('q') }}"
-                style="min-width:220px">
-        <select name="sort" class="form-select">
-            <option value="desc" {{ ($sort ?? 'desc') === 'desc' ? 'selected' : '' }}>Terbaru</option>
-            <option value="asc"  {{ ($sort ?? '') === 'asc'  ? 'selected' : '' }}>Terlama</option>
-        </select>
-        <select name="kategori" class="form-select" style="min-width:180px">
-            <option value="">-- Semua Kategori --</option>
-            @foreach($kategoris as $kat)
-            <option value="{{ $kat->id }}" {{ request('kategori') == $kat->id ? 'selected' : '' }}>
-                {{ $kat->nama }}
-            </option>
-            @endforeach
-        </select>
+    <form method="GET" action="{{ route('admin.ceo.index') }}" class="d-flex align-items-center gap-2 w-full">
+      <input type="search"
+             name="q"
+             class="form-control"
+             placeholder="Cari nama/deskripsi…"
+             value="{{ $q ?? request('q') }}"
+             style="min-width:220px">
 
-        @if(($q ?? request('q')) !== '' || request('kategori'))
-            <a href="{{ route('admin.blog.index') }}" class="btn btn-outline-secondary">Reset</a>
-        @endif
+      <select name="sort" class="form-select">
+        <option value="desc" {{ ($sort ?? 'desc') === 'desc' ? 'selected' : '' }}>Terbaru</option>
+        <option value="asc"  {{ ($sort ?? '') === 'asc'  ? 'selected' : '' }}>Terlama</option>
+      </select>
 
-        <button type="submit" class="btn btn-primary d-flex align-items-center">
-            <i class="bi bi-search me-2"></i> Cari
-        </button>
-        </form>
+      @if(($q ?? request('q')) !== '')
+        <a href="{{ route('admin.ceo.index') }}" class="btn btn-outline-secondary">Reset</a>
+      @endif
 
+      <button type="submit" class="btn btn-primary d-flex align-items-center">
+        <i class="bi bi-search me-2"></i> Cari
+      </button>
+    </form>
   </div>
 
-  {{-- (Opsional) ringkasan total & keyword --}}
-  @if(method_exists($blogs, 'total'))
+  {{-- ringkasan --}}
+  @if(method_exists($ceos, 'total'))
     <div class="mb-2 small text-muted">
-      Total: {{ $blogs->total() }}
+      Total: {{ $ceos->total() }}
       @if(($q ?? '') !== '')
         • Keyword: "<b>{{ $q }}</b>"
       @endif
     </div>
   @endif
 
-  <!-- Tabel -->
   <div class="table-responsive">
     <table class="table table-bordered table-striped align-middle">
       <thead class="table-dark">
         <tr>
-          <th>Gambar</th>
-          <th>Judul</th>
-          <th>Kategori</th>
+          <th style="width:100px;">Gambar</th>
+          <th>Nama</th>
           <th>Deskripsi</th>
-          <th>Dilihat</th>
           <th style="width:180px;">Aksi</th>
         </tr>
       </thead>
       <tbody>
-        @forelse($blogs as $item)
+        @forelse($ceos as $item)
         <tr>
-          <td style="width:100px">
+          <td>
             @if($item->gambar)
               <img src="{{ asset('storage/'.$item->gambar) }}" width="80" class="img-thumbnail" alt="gambar">
             @endif
           </td>
           <td>{{ $item->nama }}</td>
-          <td>{{ $item->kategori->nama ?? '-' }}</td>
-          <td>{!! Str::limit(strip_tags($item->deskripsi), 80) !!}</td>
-          <td>{{ $item->dilihat }}</td>
+          <td>{!! Str::limit(strip_tags($item->deskripsi), 100) !!}</td>
           <td>
             <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editModal{{ $item->id }}">Edit</button>
 
-            {{-- Hapus pakai SweetAlert2 --}}
-            <form action="{{ route('admin.blog.destroy', $item->id) }}" method="POST" class="d-inline delete-form">
+            <form action="{{ route('admin.ceo.destroy', $item->id) }}" method="POST" class="d-inline delete-form">
               @csrf @method('DELETE')
               <button type="button" class="btn btn-sm btn-danger btn-delete" data-name="{{ $item->nama }}">Hapus</button>
             </form>
           </td>
         </tr>
 
-        <!-- Modal Edit -->
+        {{-- Modal Edit --}}
         <div class="modal fade" id="editModal{{ $item->id }}" tabindex="-1" aria-hidden="true">
           <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content" style="overflow-y:auto">
-              <form action="{{ route('admin.blog.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+              <form action="{{ route('admin.ceo.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf @method('PUT')
                 <div class="modal-header">
-                  <h5 class="modal-title">Edit Blog</h5>
+                  <h5 class="modal-title">Edit CEO</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                   <div class="mb-3">
-                    <label class="form-label">Kategori</label>
-                    <select name="kategoriblog_id" class="form-control" required>
-                      <option value="">-- Pilih Kategori --</option>
-                      @foreach($kategoris as $kat)
-                        <option value="{{ $kat->id }}" {{ $item->kategoriblog_id == $kat->id ? 'selected' : '' }}>
-                          {{ $kat->nama }}
-                        </option>
-                      @endforeach
-                    </select>
-                  </div>
-                  <div class="mb-3">
-                    <label class="form-label">Judul</label>
+                    <label class="form-label">Nama</label>
                     <input type="text" name="nama" class="form-control" value="{{ $item->nama }}" required>
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Deskripsi</label>
+                    {{-- jika pakai Summernote, class "summernote" sudah inline --}}
                     <textarea name="deskripsi" class="form-control summernote">{!! $item->deskripsi !!}</textarea>
                   </div>
                   <div class="mb-3">
@@ -136,46 +112,38 @@
           </div>
         </div>
         @empty
-          <tr><td colspan="6" class="text-center text-muted">
-            @if(($q ?? '') !== '')
-              Tidak ada hasil untuk "<b>{{ $q }}</b>". <a href="{{ route('admin.blog.index') }}" class="ms-1">Reset</a>
-            @else
-              Belum ada blog.
-            @endif
-          </td></tr>
+          <tr>
+            <td colspan="4" class="text-center text-muted">
+              @if(($q ?? '') !== '')
+                Tidak ada hasil untuk "<b>{{ $q }}</b>". <a href="{{ route('admin.ceo.index') }}" class="ms-1">Reset</a>
+              @else
+                Belum ada data CEO.
+              @endif
+            </td>
+          </tr>
         @endforelse
       </tbody>
     </table>
   </div>
 
-  <!-- Pagination -->
   <div class="mt-3">
-    {{ $blogs->links() }}
+    {{ $ceos->links() }}
   </div>
 </div>
 
-<!-- Modal Tambah -->
+{{-- Modal Tambah --}}
 <div class="modal fade" id="tambahModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content" style="overflow-y:auto">
-      <form action="{{ route('admin.blog.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('admin.ceo.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="modal-header">
-          <h5 class="modal-title">Tambah Blog</h5>
+          <h5 class="modal-title">Tambah CEO</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <div class="mb-3">
-            <label class="form-label">Kategori</label>
-            <select name="kategoriblog_id" class="form-control" required>
-              <option value="">-- Pilih Kategori --</option>
-              @foreach($kategoris as $kat)
-                <option value="{{ $kat->id }}">{{ $kat->nama }}</option>
-              @endforeach
-            </select>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Judul</label>
+            <label class="form-label">Nama</label>
             <input type="text" name="nama" class="form-control" required>
           </div>
           <div class="mb-3">
@@ -232,7 +200,7 @@
         btn.addEventListener('click', function (e) {
           e.preventDefault();
           const form = this.closest('form');
-          const name = this.dataset.name || 'post ini';
+          const name = this.dataset.name || 'data ini';
           Swal.fire({
             title: 'Yakin hapus?',
             html: `Anda akan menghapus <b>${name}</b>.<br> Tindakan ini tidak bisa dibatalkan!`,

@@ -8,20 +8,23 @@ use Illuminate\Http\Request;
 
 class KategoriLayananController extends Controller
 {
+
     public function index(Request $request)
     {
         $q = trim((string) $request->query('q', ''));
+        $sort = $request->query('sort', 'desc'); // default desc
 
         $kategoris = KategoriLayanan::query()
             ->when($q !== '', function ($query) use ($q) {
                 $query->where('nama', 'like', "%{$q}%");
             })
-            ->orderByDesc('created_at')
+            ->orderBy('created_at', $sort) // pakai asc/desc sesuai query string
             ->paginate(10)
-            ->withQueryString(); // pertahankan ?q=... di pagination
+            ->withQueryString();
 
-        return view('admin.kategori-layanan.index', compact('kategoris', 'q'));
+        return view('admin.kategori-layanan.index', compact('kategoris', 'q', 'sort'));
     }
+
 
     public function store(Request $request)
     {

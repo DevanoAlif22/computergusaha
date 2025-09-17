@@ -19,7 +19,10 @@
                 placeholder="Cari layanan/kategori…"
                 value="{{ $q ?? request('q') }}"
                 style="min-width:220px">
-
+        <select name="sort" class="form-select">
+            <option value="desc" {{ ($sort ?? '') === 'desc' ? 'selected' : '' }}>Terbaru</option>
+            <option value="asc" {{ ($sort ?? '') === 'asc' ? 'selected' : '' }}>Terlama</option>
+        </select>
         <select name="kategori" class="form-select" style="min-width:180px">
             <option value="">-- Semua Kategori --</option>
             @foreach($kategoris as $kat)

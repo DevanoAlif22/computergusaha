@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\KarirController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\CeoController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\Admin\LayananController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -170,12 +172,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('category', CategoryController::class, ['as' => 'admin']);
     Route::resource('layanan', LayananController::class, ['as' => 'admin']);
     Route::resource('kategori-blog', KategoriBlogController::class, ['as' => 'admin']);
+    Route::resource('tentang-kami', TentangKamiController::class, ['as' => 'admin']);
     Route::resource('profile', ProfileController::class, ['as' => 'admin']);
     Route::resource('blog', BlogController::class, ['as' => 'admin']);
     Route::post('upload/summernote', [UploadController::class, 'summernote'])
         ->name('admin.upload.summernote');
     Route::resource('category', CategoryController::class, ['as' => 'admin']);
     Route::resource('karir', KarirController::class, ['as' => 'admin']);
+    Route::resource('ceo', CeoController::class, ['as' => 'admin']);
+    Route::resource('partner', CeoController::class, ['as' => 'admin']);
 });
 
 /*
