@@ -90,152 +90,56 @@
     <main>
 
     <!-- ====== start services ====== -->
-    <section class="services section-padding style-1">
-        <div class="container">
-            <div class="row">
-                <div class="col offset-lg-1">
-                    <div class="section-head mb-60">
-                        <h6 class="color-main text-uppercase wow fadeInUp">Layanan Kami</h6>
-                        <h2 class="wow fadeInUp">
-                            <span class="fw-normal">Layanan Teknologi untuk Kebutuhan</span> Bisnis Anda
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="content">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="service-box mb-4 wow fadeInUp" data-wow-delay="0">
-                            <h5>
-                                <a href="page-services-5.html"> IT Consultation </a> 
-                                <span class="num">01</span>
-                            </h5>
-                            <div class="icon">
-                                <img src="assets/img/icons/serv_icons/1.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="text">
-                                    Trust our top minds to eliminate workflow pain points, implement new tech & app.
-                                </div>
-                                <div class="tags">
-                                    <a href="#">Strategy</a>
-                                    <a href="#">Consultation</a>
-                                    <a href="#">Management</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="service-box mb-4 wow fadeInUp" data-wow-delay="0.2s">
-                            <h5>
-                                <a href="page-services-5.html"> Data Security </a> 
-                                <span class="num">02</span>
-                            </h5>
-                            <div class="icon">
-                                <img src="assets/img/icons/serv_icons/2.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="text">
-                                    Trust our top minds to eliminate workflow pain points, implement new tech & app.
-                                </div>
-                                <div class="tags">
-                                    <a href="#">Management</a>
-                                    <a href="#">Backup & Recovery</a>
-                                    <a href="#">Transfer</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="service-box mb-4 wow fadeInUp" data-wow-delay="0.4s">
-                            <h5>
-                                <a href="page-services-5.html"> Website Development </a> 
-                                <span class="num">03</span>
-                            </h5>
-                            <div class="icon">
-                                <img src="assets/img/icons/serv_icons/3.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="text">
-                                    Trust our top minds to eliminate workflow pain points, implement new tech & app.
-                                </div>
-                                <div class="tags">
-                                    <a href="#">Ecommerce</a>
-                                    <a href="#">Landing Page</a>
-                                    <a href="#">CMS</a>
-                                    <a href="#">Plugin</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="service-box mb-4 mb-md-0 wow fadeInUp" data-wow-delay="0">
-                            <h5>
-                                <a href="page-services-5.html"> UI/UX Design </a> 
-                                <span class="num">04</span>
-                            </h5>
-                            <div class="icon">
-                                <img src="assets/img/icons/serv_icons/4.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="text">
-                                    Trust our top minds to eliminate workflow pain points, implement new tech & app.
-                                </div>
-                                <div class="tags">
-                                    <a href="#">Website</a>
-                                    <a href="#">Mobile App</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="service-box mb-4 mb-md-0 wow fadeInUp" data-wow-delay="0.2s">
-                            <h5>
-                                <a href="page-services-5.html"> Cloud Services </a> 
-                                <span class="num">05</span>
-                            </h5>
-                            <div class="icon">
-                                <img src="assets/img/icons/serv_icons/5.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="text">
-                                    Trust our top minds to eliminate workflow pain points, implement new tech & app.
-                                </div>
-                                <div class="tags">
-                                    <a href="#">Cloud Storerage</a>
-                                    <a href="#">Hosting & VPS</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="service-box wow fadeInUp" data-wow-delay="0.4s">
-                            <h5>
-                                <a href="page-services-5.html"> Education </a> 
-                                <span class="num">06</span>
-                            </h5>
-                            <div class="icon">
-                                <img src="assets/img/icons/serv_icons/13.png" alt="">
-                            </div>
-                            <div class="info">
-                                <div class="text">
-                                    Trust our top minds to eliminate workflow pain points, implement new tech & app.
-                                </div>
-                                <div class="tags">
-                                    <a href="#">Unity 2D/3D</a>
-                                    <a href="#">VR/AR</a>
-                                    <a href="#">iOS & Android</a>
-                                    <a href="#">HTC Vive</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  <section class="services section-padding style-1">
+    <div class="container">
+        <div class="row">
+            <div class="col offset-lg-1">
+                <div class="section-head mb-60">
+                    <h6 class="color-main text-uppercase wow fadeInUp">Layanan Kami</h6>
+                    <h2 class="wow fadeInUp">
+                        <span class="fw-normal">Layanan Teknologi untuk Kebutuhan</span> Bisnis Anda
+                    </h2>
                 </div>
             </div>
         </div>
-        <img src="assets/img/services/ser_shap_l.png" alt="" class="ser_shap_l">
-        <img src="assets/img/services/ser_shap_r.png" alt="" class="ser_shap_r">
-    </section>
+        <div class="content">
+            <div class="row">
+                @foreach($layanans as $index => $layanan)
+                <div class="col-lg-4">
+                    <div class="service-box mb-4 wow fadeInUp" data-wow-delay="{{ $index * 0.2 }}s">
+                        <h5>
+                            <a href="#">
+                                {{ $layanan->nama }}
+                            </a> 
+                            <span class="num">{{ str_pad($index+1, 2, '0', STR_PAD_LEFT) }}</span>
+                        </h5>
+                        <div class="icon">
+                            @if($layanan->gambar)
+                                <img src="{{ asset('storage/'.$layanan->gambar) }}" alt="{{ $layanan->nama }}">
+                            @else
+                                <img src="assets/img/icons/serv_icons/default.png" alt="icon">
+                            @endif
+                        </div>
+                        <div class="info">
+                            <div class="text">
+                                  {!! Str::limit(strip_tags($layanan->deskripsi), 80) !!}
+                            </div>
+                            <div class="tags">
+                                @if($layanan->kategori)
+                                    <a href="#">{{ $layanan->kategori->nama }}</a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <img src="assets/img/services/ser_shap_l.png" alt="" class="ser_shap_l">
+    <img src="assets/img/services/ser_shap_r.png" alt="" class="ser_shap_r">
+</section>
+
     <!-- ====== end services ====== -->
 
     <!-- ====== start about ====== -->
@@ -343,358 +247,83 @@
     <!-- ====== end about ====== -->
 
     <!-- ====== start portfolio ====== -->
-    <section class="portfolio section-padding bg-white style-1">
+  <section class="portfolio section-padding bg-white style-1">
     <div class="container">
         <div class="row">
-        <div class="col offset-lg-1">
-            <div class="section-head mb-60">
-            <h6 class="color-main text-uppercase wow fadeInUp">Portfolio</h6>
-            <h2 class="wow fadeInUp">
-                Latest Projects <span class="fw-normal">From Our Team</span>
-            </h2>
+            <div class="col offset-lg-1">
+                <div class="section-head mb-60">
+                    <h6 class="color-main text-uppercase wow fadeInUp">Portfolio</h6>
+                    <h2 class="wow fadeInUp">
+                        Latest Projects <span class="fw-normal">From Our Team</span>
+                    </h2>
+                </div>
             </div>
-        </div>
         </div>
 
         <div class="content wow fadeIn slow">
-        <div class="portfolio-slider">
-            <div class="swiper-container">
-            <div class="swiper-wrapper">
+            <div class="portfolio-slider">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
 
-                    <!-- Slide 1 -->
-                    <div class="swiper-slide">
-                    <div class="portfolio-card" 
-                    style="display:flex; flex-direction:column; justify-content:space-between; 
-                    height:450px; height:100%; box-sizing:border-box; padding:15px;
-                    background-color:#f0f0f0; border-radius:10px;">
-                        <div style="flex-shrink:0;">
-                        <img src="assets/img/portofolio/ktaklik.png" 
-                            alt="" style="width:100%; height:auto; max-height:200px; object-fit:cover;">
-                        </div>
-                        <div class="info" style="flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;">
-                        <h5><a href="#"> Platform KTA Klik </a></h5>
-                        <small class="d-block color-main text-uppercase"><a href="#">WebApp Development</a></small>
-                        <div class="text" style="flex-grow:1;">
-                            <span class="short-text">
-                            Aplikasi berbasis Website untuk mengelola layanan Earned Wage Access (EWA)......
-                            </span>
-                            <span class="full-text" style="display:none;">
-                            Aplikasi berbasis Website untuk mengelola layanan Earned Wage Access (EWA) perusahaan internal.
-                            </span>
-                            <span class="hint" style="font-size:12px; color:gray; display:block;">
-                            (klik untuk lihat selengkapnya)
-                            </span>
-                        </div>
-                        <div class="tags" style="margin-top:auto; display:flex; gap:8px; flex-wrap:wrap;">
-                        <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            Consultation
-                        </a>
-                        <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            Management
-                        </a>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
+                        @foreach($portofolios as $item)
+                        <div class="swiper-slide">
+                            <div class="portfolio-card" 
+                                style="display:flex; flex-direction:column; justify-content:space-between; 
+                                height:100%; box-sizing:border-box; padding:15px;
+                                background-color:#f0f0f0; border-radius:10px;">
 
-                    <!-- Slide 2 -->
-                    <div class="swiper-slide">
-                    <div class="portfolio-card" 
-                    style="display:flex; flex-direction:column; justify-content:space-between; 
-                        height:450px; height:100%; box-sizing:border-box; padding:15px;
-                        background-color:#f0f0f0; border-radius:10px;">
-                        <div style="flex-shrink:0;">
-                        <img src="assets/img/projects/prog/2.png" 
-                            alt="" style="width:100%; height:auto; max-height:200px; object-fit:cover;">
+                                <!-- Gambar -->
+                                <div style="flex-shrink:0;">
+                                    <img src="{{ asset('storage/' . $item->gambar) }}" 
+                                        alt="{{ $item->judul }}" 
+                                        style="width:100%; height:auto; max-height:200px; object-fit:cover;">
+                                </div>
+
+                                <!-- Info -->
+                                <div class="info" style="flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;">
+                                    <h5><a href="{{ route('portfolio.detail', $item->id) }}">{{ $item->judul }}</a></h5>
+                                    <small class="d-block color-main text-uppercase">
+                                        <a href="#">{{ $item->category->name ?? '-' }}</a>
+                                    </small>
+
+                                    <!-- Deskripsi -->
+                                    <div class="text" style="flex-grow:1; cursor:pointer;">
+                                        <span class="short-text">
+                                          {!! Str::limit(strip_tags($item->deskripsi), 80) !!}
+
+                                        </span>
+                                       
+                                    </div>
+
+                                    <!-- Tags -->
+                                    <div class="tags" style="margin-top:auto; display:flex; gap:8px; flex-wrap:wrap;">
+                                        @if(!empty($item->tags))
+                                            @foreach(explode(',', $item->tags) as $tag)
+                                                <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
+                                                                font-size:10px; text-decoration:none; color:#333; 
+                                                                border:1px solid #ccc; display:inline-block;">
+                                                    {{ trim($tag) }}
+                                                </a>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="info" style="flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;">
-                        <h5><a href="#"> Criftocy Landing Page </a></h5>
-                        <small class="d-block color-main text-uppercase">
-                            <a href="#">Website Development</a>, <a href="#">UI/UX Design</a>
-                        </small>
-                        <div class="text" style="flex-grow:1;">
-                            <span class="short-text">
-                            Trust our top minds to eliminate workflow pain points......
-                            </span>
-                            <span class="full-text" style="display:none;">
-                            Trust our top minds to eliminate workflow pain points, implement new tech & app.
-                            </span>
-                            <span class="hint" style="font-size:12px; color:gray; display:block;">
-                            (klik untuk lihat selengkapnya)
-                            </span>
-                        </div>
-                        <div class="tags" style="margin-top:auto; display:flex; gap:8px; flex-wrap:wrap;">
-                        <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            WordPress
-                        </a>
-                        <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            PHP
-                        </a>
-                            <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            HTML/CSS
-                        </a>
-                            <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            Figma
-                        </a>
-                        </div>  
-                        </div>
-                    </div>
+                        @endforeach
+
                     </div>
 
-                    <!-- Slide 3 -->
-                    <div class="swiper-slide">
-                    <div class="portfolio-card" 
-                    style="display:flex; flex-direction:column; justify-content:space-between; 
-                        height:450px; height:100%; box-sizing:border-box; padding:15px;
-                        background-color:#f0f0f0; border-radius:10px;">
-                        <div style="flex-shrink:0;">
-                        <img src="assets/img/projects/prog/3.jpeg" 
-                            alt="" style="width:100%; height:auto; max-height:200px; object-fit:cover;">
-                        </div>
-                        <div class="info" style="flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;">
-                        <h5><a href="#"> AR/VR War 1986 Game </a></h5>
-                        <small class="d-block color-main text-uppercase"><a href="#">Game Development</a></small>
-                        <div class="text" style="flex-grow:1;">
-                            <span class="short-text">
-                            Trust our top minds to eliminate workflow pain points......
-                            </span>
-                            <span class="full-text" style="display:none;">
-                            Trust our top minds to eliminate workflow pain points, implement new tech & app.
-                            </span>
-                            <span class="hint" style="font-size:12px; color:gray; display:block;">
-                            (klik untuk lihat selengkapnya)
-                            </span>
-                        </div>
-                                            <div class="tags" style="margin-top:auto; display:flex; gap:8px; flex-wrap:wrap;">
-                        <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            VR/AR
-                        </a>
-                        <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            Ios & Android
-                        </a>
-                        <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            Unity 2D/3D
-                        </a>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class="swiper-slide">
-                    <div class="portfolio-card" 
-                    style="display:flex; flex-direction:column; justify-content:space-between; 
-                        height:450px; height:100%; box-sizing:border-box; padding:15px;
-                        background-color:#f0f0f0; border-radius:10px;">
-                        <div style="flex-shrink:0;">
-                        <img src="assets/img/projects/prog/2.png" 
-                            alt="" style="width:100%; height:auto; max-height:200px; object-fit:cover;">
-                        </div>
-                        <div class="info" style="flex-grow:1; display:flex; flex-direction:column; justify-content:space-between;">
-                        <h5><a href="#"> Criftocy Landing Page </a></h5>
-                        <small class="d-block color-main text-uppercase">
-                            <a href="#">Website Development</a>, <a href="#">UI/UX Design</a>
-                        </small>
-                        <div class="text" style="flex-grow:1;">
-                            <span class="short-text">
-                            Trust our top minds to eliminate workflow pain points......
-                            </span>
-                            <span class="full-text" style="display:none;">
-                            Trust our top minds to eliminate workflow pain points, implement new tech & app.
-                            </span>
-                            <span class="hint" style="font-size:12px; color:gray; display:block;">
-                            (klik untuk lihat selengkapnya)
-                            </span>
-                        </div>
-                                            <div class="tags" style="margin-top:auto; display:flex; gap:8px; flex-wrap:wrap;">
-                        <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            WordPress
-                        </a>
-                        <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            PHP
-                        </a>
-                            <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            HTML/CSS
-                        </a>
-                            <a href="#" style="background:#fff; padding:5px 10px; border-radius:6px; 
-                                            font-size:10px; text-decoration:none; color:#333; 
-                                            border:1px solid #ccc; display:inline-block;">
-                            Figma
-                        </a>
-                        </div>  
-                    </div>
-                </div>
-                </div>
-
-            </div>
-
-<style>
-/* Swiper container */
-.swiper-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: auto;
-
-}
-
-
-
-/* Card sama tinggi & responsif */
-.portfolio-card {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* Text handling */
-.text {
-  cursor: pointer;
-  word-wrap: break-word;
-}
-
-/* Bullet dasar (semua biru) */
-.swiper-pagination .swiper-pagination-bullet {
-  background: blue !important;
-  opacity: 0.3;
-  transition: all 0.4s ease;
-}
-
-/* Bullet aktif */
-.swiper-pagination .swiper-pagination-bullet-active {
-  opacity: 1 !important;
-  transform: scale(1.3) translateY(-3px);
-  box-shadow: 0 0 12px rgba(0,0,255,0.7);
-  border-radius: 50%;
-}
-
-/* Hint kecil di HP */
-@media (max-width: 576px) {
-  .hint {
-    font-size: 12px;
-  }
-}
-</style>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Toggle short/full text
-    document.querySelectorAll(".text").forEach(function(box) {
-        box.addEventListener("click", function() {
-            let shortText = box.querySelector(".short-text");
-            let fullText = box.querySelector(".full-text");
-            let hint = box.querySelector(".hint");
-
-            if (shortText.style.display === "none") {
-                shortText.style.display = "inline";
-                fullText.style.display = "none";
-                hint.style.display = "block";
-            } else {
-                shortText.style.display = "none";
-                fullText.style.display = "inline";
-                hint.style.display = "none";
-            }
-        });
-    });
-
-    // Swiper setup INFINITY + bullet sinkron
-    var swiper = new Swiper(".swiper-container", 
-        slidesPerView: 4,
-        spaceBetween: 30,
-        loop: true,                  // infinity aktif
-        centeredSlides: false,
-        slideToClickedSlide: true,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true
-            renderBullet: function (index, className) {
-                // hanya 4 bullet
-                if (index < 4) {
-                    return '<span class="' + className + '"></span>';
-                }
-        },
-        autoplay: {
-            delay: 3000,
-            disableOnInteraction: false
-        },
-        breakpoints: {
-            320: { slidesPerView: 1, spaceBetween: 10 },   // HP kecil
-            576: { slidesPerView: 2, spaceBetween: 15 },   // HP besar
-            768: { slidesPerView: 2, spaceBetween: 20 },   // Tablet
-            1024: { slidesPerView: 3, spaceBetween: 25 },  // Laptop
-            1280: { slidesPerView: 4, spaceBetween: 30 }   // Desktop besar
-        }
-    });
-
-    // Sinkronisasi bullet dengan slide (selalu rapi)
-    swiper.on("slideChange", function() {
-        const bullets = document.querySelectorAll(".swiper-pagination .swiper-pagination-bullet");
-        bullets.forEach((b, i) => {
-            b.classList.remove("swiper-pagination-bullet-active");
-        });
-        let activeIndex = swiper.realIndex % bullets.length;
-        if (bullets[activeIndex]) {
-            bullets[activeIndex].classList.add("swiper-pagination-bullet-active");
-        }
-    });
-
-    // Equalize tinggi card (biar sama semua)
-    function equalizeHeights() {
-        let maxHeight = 0;
-        document.querySelectorAll(".portfolio-card").forEach(function(card) {
-            card.style.height = "auto"; // reset
-            if (card.offsetHeight > maxHeight) {
-                maxHeight = card.offsetHeight;
-            }
-        });
-        document.querySelectorAll(".portfolio-card").forEach(function(card) {
-            card.style.height = maxHeight + "px";
-        });
-    }
-    equalizeHeights();
-    window.addEventListener("resize", equalizeHeights);
-});
-</script>
-
-
-
-                    <!-- ====== slider pagination ====== -->
+                    <!-- Pagination & Navigation -->
                     <div class="swiper-pagination"></div>
-
-                    <!-- ====== slider navigation ====== -->
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-    </section>
     <!-- ====== end portfolio ====== -->
 
     
@@ -786,161 +415,60 @@ document.addEventListener("DOMContentLoaded", function() {
     <!-- ====== end testimonials ====== -->
 
     <!-- ====== start blog ====== -->
-    <section class="blog section-padding bg-white style-1">
-        <div class="container">
-            <div class="row">
-                <div class="col offset-lg-1">
-                    <div class="section-head mb-60">
-                        <h6 class="color-main text-uppercase wow fadeInUp">our press</h6>
-                        <h2 class="wow fadeInUp">
-                            Latest Posts <span class="fw-normal">From Our Press</span>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="content">
-                <div class="blog_slider">
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="blog_box">
-                                    <div class="tags">
-                                        <a href="#">news</a>
-                                    </div>
-                                    <div class="img">
-                                        <img src="assets/img/blog/1.jpeg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <h6><a href="page-single-post-5.html">Crypto Trends 2023</a></h6>
-                                        <div class="auther">
-                                            <span>
-                                                <img class="auther-img" src="assets/img/testimonials/user1.jpeg" alt="">
-                                                <small><a href="#">By Admin</a></small>
-                                            </span>
-                                            <span>
-                                                <i class="bi bi-calendar2"></i>
-                                                <small><a href="#">May 15, 2023</a></small>
-                                            </span>
-                                        </div>
-                                        <div class="text">
-                                            If there’s one way that wireless technology has changed the way we work, it’s that will everyone is now connected [...]
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="blog_box">
-                                    <div class="tags">
-                                        <a href="#">technology</a>
-                                    </div>
-                                    <div class="img">
-                                        <img src="assets/img/blog/2.jpeg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <h6><a href="page-single-post-5.html">How To Become Web Developer</a></h6>
-                                        <div class="auther">
-                                            <span>
-                                                <img class="auther-img" src="assets/img/testimonials/user2.jpeg" alt="">
-                                                <small><a href="#">By Moussa</a></small>
-                                            </span>
-                                            <span>
-                                                <i class="bi bi-calendar2"></i>
-                                                <small><a href="#">May 15, 2023</a></small>
-                                            </span>
-                                        </div>
-                                        <div class="text">
-                                            If there’s one way that wireless technology has changed the way we work, it’s that will everyone is now connected [...]
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="blog_box">
-                                    <div class="tags">
-                                        <a href="#">tips & tricks</a>
-                                    </div>
-                                    <div class="img">
-                                        <img src="assets/img/blog/3.jpeg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <h6><a href="page-single-post-5.html">Wireframe For UI/UX?</a></h6>
-                                        <div class="auther">
-                                            <span>
-                                                <img class="auther-img" src="assets/img/testimonials/user3.jpeg" alt="">
-                                                <small><a href="#">By Admin</a></small>
-                                            </span>
-                                            <span>
-                                                <i class="bi bi-calendar2"></i>
-                                                <small><a href="#">May 15, 2023</a></small>
-                                            </span>
-                                        </div>
-                                        <div class="text">
-                                            If there’s one way that wireless technology has changed the way we work, it’s that will everyone is now connected [...]
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="blog_box">
-                                    <div class="tags">
-                                        <a href="#">news</a>
-                                    </div>
-                                    <div class="img">
-                                        <img src="assets/img/blog/4.jpeg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <h6><a href="page-single-post-5.html">VR Game, Opportunity & Challenge</a></h6>
-                                        <div class="auther">
-                                            <span>
-                                                <img class="auther-img" src="assets/img/testimonials/user1.jpeg" alt="">
-                                                <small><a href="#">By David</a></small>
-                                            </span>
-                                            <span>
-                                                <i class="bi bi-calendar2"></i>
-                                                <small><a href="#">May 15, 2023</a></small>
-                                            </span>
-                                        </div>
-                                        <div class="text">
-                                            If there’s one way that wireless technology has changed the way we work, it’s that will everyone is now connected [...]
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="blog_box">
-                                    <div class="tags">
-                                        <a href="#">technology</a>
-                                    </div>
-                                    <div class="img">
-                                        <img src="assets/img/blog/2.jpeg" alt="">
-                                    </div>
-                                    <div class="info">
-                                        <h6><a href="page-single-post-5.html">How To Become Web Developer</a></h6>
-                                        <div class="auther">
-                                            <span>
-                                                <img class="auther-img" src="assets/img/testimonials/user2.jpeg" alt="">
-                                                <small><a href="#">By Moussa</a></small>
-                                            </span>
-                                            <span>
-                                                <i class="bi bi-calendar2"></i>
-                                                <small><a href="#">May 15, 2023</a></small>
-                                            </span>
-                                        </div>
-                                        <div class="text">
-                                            If there’s one way that wireless technology has changed the way we work, it’s that will everyone is now connected [...]
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ====== slider navigation ====== -->
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
+<section class="blog section-padding bg-white style-1">
+    <div class="container">
+        <div class="row">
+            <div class="col offset-lg-1">
+                <div class="section-head mb-60">
+                    <h6 class="color-main text-uppercase wow fadeInUp">our press</h6>
+                    <h2 class="wow fadeInUp">
+                        Latest Posts <span class="fw-normal">From Our Press</span>
+                    </h2>
                 </div>
             </div>
         </div>
-    </section>
+        <div class="content">
+            <div class="blog_slider">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        @foreach($blogs as $item)
+                            <div class="swiper-slide">
+                                <div class="blog_box">
+                                    <div class="tags">
+                                        <a href="#">{{ $item->kategori->nama ?? 'Uncategorized' }}</a>
+                                    </div>
+                                    <div class="img">
+                                        <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}">
+                                    </div>
+                                    <div class="info">
+                                        <h6><a href="{{ route('blog.detail', $item->id) }}">{{ $item->nama }}</a></h6>
+                                        <div class="auther">
+                                            <span>
+                                                <img class="auther-img" src="{{ asset('assets/img/testimonials/user1.jpeg') }}" alt="">
+                                                <small><a href="#">By Admin</a></small>
+                                            </span>
+                                            <span>
+                                                <i class="bi bi-calendar2"></i>
+                                                <small><a href="#">{{ $item->created_at->format('M d, Y') }}</a></small>
+                                            </span>
+                                        </div>
+                                        <div class="text">
+                                            {!! \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100) !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <!-- slider navigation -->
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
     <!-- ====== end blog ====== -->
 
 <!-- ====== start clients ====== -->

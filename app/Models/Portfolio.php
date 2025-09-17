@@ -9,7 +9,7 @@ class Portfolio extends Model {
     protected $fillable = ['portfolio_category_id','title','description','image'];
 
     public function category() {
-        return $this->belongsTo(PortfolioCategory::class);
+       return $this->belongsTo(PortfolioCategory::class, 'category_id');
     }
 }
 
