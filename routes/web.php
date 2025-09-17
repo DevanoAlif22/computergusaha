@@ -8,7 +8,9 @@ use App\Http\Controllers\Admin\CeoController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\Admin\JourneyController;
 use App\Http\Controllers\Admin\LayananController;
+use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -180,7 +182,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('category', CategoryController::class, ['as' => 'admin']);
     Route::resource('karir', KarirController::class, ['as' => 'admin']);
     Route::resource('ceo', CeoController::class, ['as' => 'admin']);
-    Route::resource('partner', CeoController::class, ['as' => 'admin']);
+    Route::resource('partner', PartnerController::class, ['as' => 'admin']);
+    Route::resource('journey', JourneyController::class, ['as' => 'admin']);
 });
 
 /*
