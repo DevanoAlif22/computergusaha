@@ -12,16 +12,23 @@ class KategoriBlogController extends Controller
     {
         $q = trim((string) $request->query('q', ''));
 
+        // arah urut: default desc
+        $sort = strtolower($request->query('sort', 'desc'));
+        if (!in_array($sort, ['asc', 'desc'], true)) {
+            $sort = 'desc';
+        }
+
         $kategoris = KategoriBlog::query()
             ->when($q !== '', function ($query) use ($q) {
                 $query->where('nama', 'like', "%{$q}%");
             })
-            ->orderByDesc('created_at')
+            ->orderBy('created_at', $sort)
             ->paginate(10)
-            ->withQueryString(); // pertahankan ?q=... di pagination
+            ->withQueryString();
 
-        return view('admin.kategori-blog.index', compact('kategoris', 'q'));
+        return view('admin.kategori-blog.index', compact('kategoris', 'q', 'sort'));
     }
+
 
 
     public function store(Request $request)
