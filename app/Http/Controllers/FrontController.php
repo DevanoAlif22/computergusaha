@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ceo;
 use App\Models\Blog;
 use App\Models\Karir;
+use App\Models\Journey;
 use App\Models\Layanan;
+use App\Models\Partner;
 use App\Models\Category;
 use App\Models\Portofolio;
 use App\Models\KategoriBlog;
@@ -79,6 +82,14 @@ public function detailBlog($id) {
     return view('blog-detail', compact('blog'));
 }
 
+public function about()
+{
+    $ceos = Ceo::all();
+    $journeys = Journey::orderBy('tahun', 'asc')->get();
+    $partners = Partner::all();
+    $layanans = Layanan::all();
+    $blogs = Blog::latest()->take(4)->get(); // ambil 4 blog terbaru
 
-
+    return view('tentang-kami', compact('ceos', 'journeys', 'partners', 'layanans', 'blogs'));
+}
 }
