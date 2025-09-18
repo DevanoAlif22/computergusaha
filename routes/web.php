@@ -78,7 +78,7 @@ Route::get('/marketing-startup', fn() => view('home-marketing-startup'));
 Route::get('/it-solution', fn() => view('home-it-solutions2'));
 Route::get('/software-company', fn() => view('home-software-company'));
 Route::get('/digital-agency', fn() => view('home-digital-agency'));
-Route::get('/about2', fn() => view('about2'));
+Route::get('/about2', [FrontController::class, 'about'])->name('about')                ;
 
 /*
 |--------------------------------------------------------------------------
@@ -167,7 +167,7 @@ Route::get('/servicesdetailsomail', fn() => view('servicesdetailsomail'));
 
 //Admin
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('portofolio', PortofolioController::class, ['as' => 'admin']);
     Route::resource('kategori-layanan', KategoriLayananController::class, ['as' => 'admin']);
