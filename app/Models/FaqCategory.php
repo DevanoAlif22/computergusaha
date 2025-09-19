@@ -14,7 +14,9 @@ class FaqCategory extends Model
     protected $fillable = ['nama', 'urutan'];
 
     public function faqs()
-    {
-        return $this->hasMany(Faq::class, 'faq_category_id')->orderBy('urutan')->orderBy('id');
-    }
+{
+    return $this->hasMany(Faq::class, 'faq_category_id')
+                ->orderBy('id', 'asc');
+}
+    
 }

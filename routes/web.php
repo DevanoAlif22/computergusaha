@@ -143,7 +143,7 @@ Route::get('/pricing-plan', fn() => view('page-about-5'));
 |--------------------------------------------------------------------------
 */
 
-Route::get('/faq', fn() => view('faq'));
+Route::get('/faq', [FrontController::class, 'faq']);
 
 /*
 |--------------------------------------------------------------------------
@@ -174,7 +174,7 @@ Route::get('/servicesdetailsomail', fn() => view('servicesdetailsomail'));
 
 //Admin
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->middleware("auth")->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('client', ClientController::class, ['as' => 'admin']);
     Route::resource('ecosystem', EcosystemController::class, ['as' => 'admin']);

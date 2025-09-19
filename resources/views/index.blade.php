@@ -483,71 +483,19 @@
     </div>
     <div class="content">
         <div class="clients-slider5">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p1.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p2.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p3.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p4.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p5.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p6.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p7.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p8.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p9.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p10.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p11.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/p12.png" alt="">
-                        </a>
-                    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            @foreach($clients as $client)
+                <div class="swiper-slide">
+                    <a href="{{ $client->link ?? '#' }}" class="img" target="_blank">
+                        <img src="{{ asset('storage/' . $client->gambar) }}" alt="Client Logo">
+                    </a>
                 </div>
-            </div>
+            @endforeach
         </div>
+    </div>
+</div>
+
         <div class="container">
             <div class="section-head mb-60 text-center">
         
@@ -558,121 +506,42 @@
     <!-- <p>More than 15,000 companies trust and choose Iteck</p> -->
 </div>
         <div class="clients-slider5" dir="rtl">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/e1.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/e2.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/e3.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/e4.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/e5.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/e6.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/e7.png" alt="">
-                        </a>
-                    </div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            @foreach($ecosystems as $ecosystem)
+                <div class="swiper-slide">
+                    <a href="{{ $ecosystem->link ?? '#' }}" class="img" target="_blank">
+                        <img src="{{ asset('storage/' . $ecosystem->gambar) }}" alt="Ecosystem Logo">
+                    </a>
                 </div>
-            </div>
+            @endforeach
         </div>
+    </div>
+        </div>
+
         <div class="container">
             <div class="section-head mb-60 text-center">
         
             </div>
         </div>
-<div class="section-head text-center mb-40 style-5">
-    <h2 class="mb-20"> <span> OTW </span> Education </h2>
-    <!-- <p>More than 15,000 companies trust and choose Iteck</p> -->
-</div>
-        <div class="clients-slider5">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s1.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s2.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s3.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s4.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s5.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s6.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s7.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s8.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s9.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s10.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s11.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="#" class="img">
-                            <img src="assets/img/support/s12.png" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
+        <div class="section-head text-center mb-40 style-5">
+            <h2 class="mb-20"> <span> OTW </span> Education </h2>
+            <!-- <p>More than 15,000 companies trust and choose Iteck</p> -->
         </div>
+        <div class="clients-slider5">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            @foreach($educations as $education)
+                <div class="swiper-slide">
+                    <a href="{{ $education->link ?? '#' }}" class="img" target="_blank">
+                        <img src="{{ asset('storage/' . $education->gambar) }}" alt="Education Logo">
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
     </div>
 </section>
 <!-- ====== end clients ====== -->
