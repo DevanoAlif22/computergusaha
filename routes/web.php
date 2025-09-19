@@ -5,6 +5,8 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\KarirController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CeoController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\StatisFaqController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\Admin\UploadController;
@@ -15,6 +17,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\UserManagementController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PortofolioController;
+use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\KategoriBlogController;
 use App\Http\Controllers\Admin\KategoriLayananController;
 
@@ -78,7 +81,7 @@ Route::get('/marketing-startup', fn() => view('home-marketing-startup'));
 Route::get('/it-solution', fn() => view('home-it-solutions2'));
 Route::get('/software-company', fn() => view('home-software-company'));
 Route::get('/digital-agency', fn() => view('home-digital-agency'));
-Route::get('/about2', [FrontController::class, 'about'])->name('about')                ;
+Route::get('/about2', [FrontController::class, 'about'])->name('about');
 
 /*
 |--------------------------------------------------------------------------
@@ -167,15 +170,18 @@ Route::get('/servicesdetailsomail', fn() => view('servicesdetailsomail'));
 
 //Admin
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('portofolio', PortofolioController::class, ['as' => 'admin']);
     Route::resource('kategori-layanan', KategoriLayananController::class, ['as' => 'admin']);
     Route::resource('category', CategoryController::class, ['as' => 'admin']);
     Route::resource('layanan', LayananController::class, ['as' => 'admin']);
     Route::resource('kategori-blog', KategoriBlogController::class, ['as' => 'admin']);
-    Route::resource('tentang-kami', TentangKamiController::class, ['as' => 'admin']);
     Route::resource('profile', ProfileController::class, ['as' => 'admin']);
+    Route::resource('tentang-kami', TentangKamiController::class, ['as' => 'admin']);
+    Route::resource('statis-faq', StatisFaqController::class, ['as' => 'admin']);
+    Route::resource('faq', FaqController::class, ['as' => 'admin']);
+    Route::resource('faq-category', FaqCategoryController::class, ['as' => 'admin']);
     Route::resource('blog', BlogController::class, ['as' => 'admin']);
     Route::post('upload/summernote', [UploadController::class, 'summernote'])
         ->name('admin.upload.summernote');
