@@ -199,7 +199,7 @@
         </a>
         </li>
         <li>
-        <a href="" class="{{ request()->is('admin/pages/faq') ? 'active' : '' }}">
+        <a href="{{ route('admin.statis-faq.index') }}" class="{{ request()->is('admin/statis-faq') ? 'active' : '' }}">
             <i class="bi bi-circle"></i><span>FAQ</span>
         </a>
         </li>
