@@ -4,6 +4,7 @@ use App\Models\Ecosystem;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\KarirController;
+use App\Http\Controllers\LamaranController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\CeoController;
 use App\Http\Controllers\Admin\FaqController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\Admin\PortofolioController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\KategoriBlogController;
 use App\Http\Controllers\Admin\KategoriLayananController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -107,6 +109,7 @@ Route::get('/single-project-5', fn() => view('page-single-project-5'));
 Route::get('/portfolio', [FrontController::class, 'listPortofolio']);
 Route::get('/portfolio/{id}', [FrontController::class, 'detailPortofolio'])->name('portfolio.detail');
 Route::get('/karir', [FrontController::class, 'listKarir'])->name('karir.index');
+Route::post('/karir/apply', [FrontController::class, 'storeApplication'])->name('karir.apply');
 Route::get('/karir/{id}', [FrontController::class, 'detailKarir'])->name('karir.detail');
 Route::get('/blog', [FrontController::class, 'listBlog'])->name('blog.index');
 Route::get('/blog/{id}', [FrontController::class, 'detailBlog'])->name('blog.detail');
@@ -174,8 +177,9 @@ Route::get('/servicesdetailsomail', fn() => view('servicesdetailsomail'));
 
 //Admin
 
-Route::prefix('admin')->middleware("auth")->group(function () {
+Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('lamaran', LamaranController::class, ['as' => 'admin']);
     Route::resource('client', ClientController::class, ['as' => 'admin']);
     Route::resource('ecosystem', EcosystemController::class, ['as' => 'admin']);
     Route::resource('education', EducationController::class, ['as' => 'admin']);

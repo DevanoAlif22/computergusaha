@@ -7,6 +7,7 @@ use App\Models\Blog;
 use App\Models\Karir;
 use App\Models\Client;
 use App\Models\Journey;
+use App\Models\Lamaran;
 use App\Models\Layanan;
 use App\Models\Partner;
 use App\Models\Category;
@@ -16,6 +17,7 @@ use App\Models\Portofolio;
 use App\Models\FaqCategory;
 use App\Models\KategoriBlog;
 use Illuminate\Http\Request;
+use App\Models\Application;
 
 class FrontController extends Controller
 {
@@ -54,7 +56,28 @@ public function detailPortofolio($id)
         // Kirim ke view 'karir.blade.php'
         return view('karir', compact('karirs'));
     }
+public function storeApplication(Request $request)
+{
+    $validated = $request->validate([
+        'full_name'   => 'required|string|max:255',
+        'email'       => 'required|email',
+        'phone_number'=> 'required|string|max:20',
+        'cv_file'     => 'required|mimes:pdf,doc,docx|max:2048',
+        'message'     => 'nullable|string',
+    ]);
 
+    // Upload file CV
+    if ($request->hasFile('cv_file')) {
+        $cvPath = $request->file('cv_file')->store('cv', 'public');
+        $validated['cv_path'] = $cvPath;
+    }
+
+    unset($validated['cv_file']); // hapus sebelum insert
+
+    Lamaran::create($validated);
+
+    return redirect()->route('karir.index')->with('success', 'Lamaran berhasil dikirim!');
+}
       public function detailKarir($id)
     {
 

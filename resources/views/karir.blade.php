@@ -39,6 +39,8 @@
     <link rel="stylesheet" href="assets/css/lib/swiper.min.css" />
     <!-- ====== global style ====== -->
     <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body>
@@ -152,47 +154,70 @@
                             </div> -->
                         </div>
                     </div>
+                    @if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: '{{ session('success') }}',
+        showConfirmButton: false,
+        timer: 2000
+    });
+</script>
+@endif
+
+@if($errors->any())
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        html: `{!! implode('<br>', $errors->all()) !!}`,
+    });
+</script>
+@endif
+
                     <div class="col-lg-6">
-                        <form action="contact.php" class="form">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group mb-4">
-                                        <input type="text" class="form-control" placeholder="Nama Lengkap">
-                                        <span class="icon"> <i class="fas fa-user"></i> </span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group mb-4">
-                                        <input type="text" class="form-control" placeholder="Email">
-                                        <span class="icon"> <i class="fas fa-envelope"></i> </span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group mb-4">
-                                        <input type="text" class="form-control" placeholder="Nomor HP">
-                                        <span class="icon"> <i class="fas fa-phone"></i> </span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group mb-4 upload-card">
-                                        <div class="form-control">
-                                            <span id="upload_text"> <i class="fas fa-cloud"></i> Upload CV</span>
-                                            <input type="file" class="upload_input">
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group mb-4">
-                                        <textarea rows="7" class="form-control" placeholder="Isi Pesan"></textarea>
-                                        <span class="icon"> <i class="fas fa-pen"></i> </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn bg-white sm-butn mt-4 rounded-3">
-                                <span class="text-dark"> Kirim Lamaran <i class="fal fa-long-arrow-right ms-2 color-blue5"></i> </span>
-                            </button>
-                        </form>
+                        <form action="{{ route('karir.apply') }}" method="POST" enctype="multipart/form-data" class="form">
+    @csrf
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group mb-4">
+                <input type="text" name="full_name" class="form-control" placeholder="Nama Lengkap" required>
+                <span class="icon"> <i class="fas fa-user"></i> </span>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group mb-4">
+                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                <span class="icon"> <i class="fas fa-envelope"></i> </span>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group mb-4">
+                <input type="text" name="phone_number" class="form-control" placeholder="Nomor HP" required>
+                <span class="icon"> <i class="fas fa-phone"></i> </span>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group mb-4 upload-card">
+                <div class="form-control">
+                    <span id="upload_text"> <i class="fas fa-cloud"></i> Upload CV</span>
+                    <input type="file" name="cv_file" class="upload_input" required>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="form-group mb-4">
+                <textarea rows="7" name="message" class="form-control" placeholder="Isi Pesan"></textarea>
+                <span class="icon"> <i class="fas fa-pen"></i> </span>
+            </div>
+        </div>
+    </div>
+    <button class="btn bg-white sm-butn mt-4 rounded-3">
+        <span class="text-dark"> Kirim Lamaran <i class="fal fa-long-arrow-right ms-2 color-blue5"></i> </span>
+    </button>
+</form>
+
                     </div>
                 </div>
             </div>
@@ -224,6 +249,7 @@
     <!-- <script src="assets/js/lib/pace.js"></script> -->
     <script src="assets/js/lib/scrollIt.min.js"></script>
     <script src="assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $('.upload_input').on('change', function(event) {
