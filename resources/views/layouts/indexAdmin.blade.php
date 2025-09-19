@@ -206,6 +206,32 @@
     </ul>
     </li>
 
+    {{-- OTW --}}
+    <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#otw-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-file-earmark-text"></i>
+        <span>OTW</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="otw-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+        <li>
+        <a href="{{ route('admin.client.index') }}" class="{{ request()->is('admin/client') ? 'active' : '' }}">
+            <i class="bi bi-circle"></i><span>Client</span>
+        </a>
+        </li>
+        <li>
+        <a href="{{ route('admin.ecosystem.index') }}" class="{{ request()->is('admin/ecosystem') ? 'active' : '' }}">
+            <i class="bi bi-circle"></i><span>Ecosystem</span>
+        </a>
+        </li>
+        <li>
+        <a href="{{ route('admin.education.index') }}" class="{{ request()->is('admin/education') ? 'active' : '' }}">
+            <i class="bi bi-circle"></i><span>Education</span>
+        </a>
+        </li>
+    </ul>
+    </li>
+
 
     {{-- Kontak --}}
     <li class="nav-item">
@@ -225,15 +251,15 @@
       </a>
     </li> --}}
 
-    <li class="nav-heading">Pengaturan</li>
+    {{-- <li class="nav-heading">Pengaturan</li> --}}
 
     {{-- Settings (kalau nanti ada route settings.* tinggal ganti href + state) --}}
-    <li class="nav-item">
+    {{-- <li class="nav-item">
       <a class="nav-link collapsed" href="settings.html">
         <i class="bi bi-sliders"></i>
         <span>Pengaturan Website</span>
       </a>
-    </li>
+    </li> --}}
   </ul>
 </aside>
   <!-- End Sidebar -->
