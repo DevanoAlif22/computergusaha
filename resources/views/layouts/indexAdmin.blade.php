@@ -235,9 +235,9 @@
 
     {{-- Kontak --}}
     <li class="nav-item">
-      <a class="nav-link collapsed" href="contacts.html">
+      <a class="nav-link collapsed" href="{{ route('admin.lamaran.index') }}">
         <i class="bi bi-envelope"></i>
-        <span>Kontak</span>
+        <span>Lamaran</span>
       </a>
     </li>
 

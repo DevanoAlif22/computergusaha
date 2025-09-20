@@ -15,14 +15,6 @@
       <input type="search" name="q" class="form-control" placeholder="Cari pertanyaan/jawaban…"
              value="{{ $q ?? request('q') }}" style="min-width:220px">
 
-      <select name="category" class="form-select" style="min-width:180px">
-        <option value="">Semua Kategori</option>
-        @foreach($categories as $cat)
-          <option value="{{ $cat->id }}" {{ (string)($categoryId ?? '') === (string)$cat->id ? 'selected' : '' }}>
-            {{ $cat->nama }}
-          </option>
-        @endforeach
-      </select>
 
       <select name="sort_by" class="form-select">
         <option value="created_at" {{ ($sortBy ?? 'created_at') === 'created_at' ? 'selected' : '' }}>Urut: Dibuat</option>
@@ -30,8 +22,8 @@
       </select>
 
       <select name="sort" class="form-select">
-        <option value="desc" {{ ($sort ?? 'desc') === 'desc' ? 'selected' : '' }}>Desc</option>
-        <option value="asc"  {{ ($sort ?? '') === 'asc'  ? 'selected' : '' }}>Asc</option>
+        <option value="desc" {{ ($sort ?? 'desc') === 'desc' ? 'selected' : '' }}>Terbaru</option>
+        <option value="asc"  {{ ($sort ?? '') === 'asc'  ? 'selected' : '' }}>Terlama</option>
       </select>
 
       @if(($q ?? '') !== '' || ($categoryId ?? '') !== '' || ($sortBy ?? 'created_at') !== 'created_at' || ($sort ?? 'desc') !== 'desc')
