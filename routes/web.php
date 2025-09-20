@@ -21,8 +21,10 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EcosystemController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\StatisFaqController;
+use App\Http\Controllers\Admin\PengaturanController;
 use App\Http\Controllers\Admin\PortofolioController;
 use App\Http\Controllers\Admin\FaqCategoryController;
+use App\Http\Controllers\Admin\PengaturanController2;
 use App\Http\Controllers\Admin\KategoriBlogController;
 use App\Http\Controllers\Admin\KategoriLayananController;
 
@@ -177,7 +179,7 @@ Route::get('/servicesdetailsomail', fn() => view('servicesdetailsomail'));
 
 //Admin
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('lamaran', LamaranController::class, ['as' => 'admin']);
     Route::resource('client', ClientController::class, ['as' => 'admin']);
@@ -189,6 +191,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('layanan', LayananController::class, ['as' => 'admin']);
     Route::resource('kategori-blog', KategoriBlogController::class, ['as' => 'admin']);
     Route::resource('profile', ProfileController::class, ['as' => 'admin']);
+    Route::resource('pengaturan', PengaturanController::class, ['as' => 'admin']);
     Route::resource('tentang-kami', TentangKamiController::class, ['as' => 'admin']);
     Route::resource('statis-faq', StatisFaqController::class, ['as' => 'admin']);
     Route::resource('faq', FaqController::class, ['as' => 'admin']);
