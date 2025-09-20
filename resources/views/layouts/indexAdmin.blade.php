@@ -251,15 +251,15 @@
       </a>
     </li> --}}
 
-    {{-- <li class="nav-heading">Pengaturan</li> --}}
+    <li class="nav-heading">Pengaturan</li>
 
     {{-- Settings (kalau nanti ada route settings.* tinggal ganti href + state) --}}
-    {{-- <li class="nav-item">
-      <a class="nav-link collapsed" href="settings.html">
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('admin.pengaturan.index') }}">
         <i class="bi bi-sliders"></i>
         <span>Pengaturan Website</span>
       </a>
-    </li> --}}
+    </li>
   </ul>
 </aside>
   <!-- End Sidebar -->
@@ -310,7 +310,8 @@
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote-bs5.min.js"></script>
 
   <!-- Summernote Init (global) -->
-  <script>
+ <!-- Summernote Init (global) -->
+<script>
   console.log('[indexAdmin] Summernote init loaded');
 
   // setup CSRF untuk semua AJAX jQuery
@@ -327,13 +328,30 @@
       placeholder: 'Tulis deskripsi…',
       tabsize: 2,
       height: 220,
+
+      // ======== TAMBAHAN TOOLBAR SESUAI GAMBAR ========
       toolbar: [
         ['style',    ['style']],
-        ['font',     ['bold', 'italic', 'underline', 'clear']],
+        ['font',     ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'clear']],
+        ['fontname', ['fontname']],            // dropdown font family
+        ['fontsize', ['fontsize']],            // dropdown font size
+        ['color',    ['color']],               // text & background color
         ['para',     ['ul', 'ol', 'paragraph']],
-        ['insert',   ['link', 'picture']], // picture tetap, tapi kita override upload-nya
-        ['view',     ['codeview']]
+        ['height',   ['height']],              // line-height
+        ['table',    ['table']],               // insert table
+        ['insert',   ['link', 'picture', 'video']], // picture di-override upload-nya
+        ['view',     ['fullscreen', 'codeview', 'help']]
       ],
+
+      // Opsi font & size yang muncul di dropdown
+      fontNames: [
+        'Poppins','Arial','Helvetica','Tahoma','Times New Roman',
+        'Georgia','Courier New','Monospace','sans-serif','serif'
+      ],
+      fontNamesIgnoreCheck: ['Poppins','sans-serif','serif','Monospace'],
+      fontSizes: ['8','9','10','11','12','14','16','18','20','24','28','32','36'],
+      lineHeights: ['0.9','1.0','1.15','1.3','1.5','1.75','2.0'],
+
       callbacks: {
         // Upload jika user memilih gambar dari file picker
         onImageUpload: function(files) {
@@ -344,17 +362,13 @@
             });
           }
         },
-        // Cegah paste gambar base64 (opsional: supaya konten tetap ringan)
+        // Cegah paste gambar base64 (opsional)
         onPaste: function(e) {
           const clipboard = (e.originalEvent || e).clipboardData;
           if (!clipboard) return;
-
-          // Kalau ada item bertipe image di clipboard → cegah default (base64)
           for (let i = 0; i < clipboard.items.length; i++) {
             if (clipboard.items[i].type.indexOf('image') !== -1) {
               e.preventDefault();
-              // Kamu bisa juga upload gambar dari clipboard di sini kalau mau
-              // dengan clipboard.items[i].getAsFile() lalu panggil uploadImage(...)
               alert('Tempel gambar langsung dinonaktifkan. Gunakan tombol "Insert image".');
               return;
             }
@@ -366,7 +380,6 @@
     function uploadImage(file, done) {
       const formData = new FormData();
       formData.append('file', file);
-
       $.ajax({
         url: "{{ route('admin.upload.summernote') }}",
         method: 'POST',
@@ -398,7 +411,6 @@
     }
   });
 </script>
-
   @yield('scripts')
 </body>
 </html>
