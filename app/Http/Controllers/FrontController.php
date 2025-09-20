@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Ceo;
 use App\Models\Blog;
 use App\Models\Karir;
+use App\Models\Client;
 use App\Models\Journey;
+use App\Models\Lamaran;
 use App\Models\Layanan;
 use App\Models\Partner;
 use App\Models\Category;
+use App\Models\Ecosystem;
+use App\Models\Education;
 use App\Models\Portofolio;
+use App\Models\FaqCategory;
 use App\Models\KategoriBlog;
 use Illuminate\Http\Request;
+use App\Models\Application;
 
 class FrontController extends Controller
 {
@@ -19,10 +25,15 @@ public function index()
 {
     $layanans = Layanan::with('kategori')->get();
     $portofolios = Portofolio::with('category')->latest()->get();
-    $blogs = Blog::with('kategori')->latest()->take(5)->get(); // ambil 5 terbaru
+    $blogs = Blog::with('kategori')->latest()->take(5)->get();
+    $clients = Client::all(); 
+    $ecosystems = Ecosystem::all(); 
+    $educations = Education::all(); // ambil semua education
 
-    return view('index', compact('layanans', 'portofolios', 'blogs'));
+    return view('index', compact('layanans', 'portofolios', 'blogs', 'clients', 'ecosystems', 'educations'));
 }
+
+
 
     public function listPortofolio()
 {
@@ -45,7 +56,28 @@ public function detailPortofolio($id)
         // Kirim ke view 'karir.blade.php'
         return view('karir', compact('karirs'));
     }
+public function storeApplication(Request $request)
+{
+    $validated = $request->validate([
+        'full_name'   => 'required|string|max:255',
+        'email'       => 'required|email',
+        'phone_number'=> 'required|string|max:20',
+        'cv_file'     => 'required|mimes:pdf,doc,docx|max:2048',
+        'message'     => 'nullable|string',
+    ]);
 
+    // Upload file CV
+    if ($request->hasFile('cv_file')) {
+        $cvPath = $request->file('cv_file')->store('cv', 'public');
+        $validated['cv_path'] = $cvPath;
+    }
+
+    unset($validated['cv_file']); // hapus sebelum insert
+
+    Lamaran::create($validated);
+
+    return redirect()->route('karir.index')->with('success', 'Lamaran berhasil dikirim!');
+}
       public function detailKarir($id)
     {
 
@@ -92,4 +124,15 @@ public function about()
 
     return view('tentang-kami', compact('ceos', 'journeys', 'partners', 'layanans', 'blogs'));
 }
+public function faq()
+{
+    $categories = FaqCategory::with('faqs')
+                    ->orderBy('id', 'asc') // urut kategori by id
+                    ->get();
+
+    return view('faq', compact('categories'));
+}
+
+
+
 }
