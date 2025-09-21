@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Pengaturan;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,7 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-            
+     $pengaturan = Pengaturan::first();
+
+    // kirim ke semua view
+    View::share('pengaturan', $pengaturan);
         
     }
 }
