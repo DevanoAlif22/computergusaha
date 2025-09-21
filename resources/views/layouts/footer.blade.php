@@ -7,17 +7,18 @@
                         <div class="col-lg-6">
                             <div class="foot-logo">
                                 <a href="#">
-                                    <img src="{{ asset('assets/img/logo_otw.png') }}" alt="">
+                                    <img src="{{ asset('storage/' . $pengaturan->logo) }}" 
+                     alt="{{ $pengaturan->nama_website }}">
                                     <img src="{{ asset('assets/img/logo_tdt.png') }}" alt="">
                                 </a>
                             </div>
                         </div>
                         <div class="col-lg-6 text-lg-end">
                             <div class="socials">
-                                <a href="#">
+                                <a href=" {{ $pengaturan->linkedin }}">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="https://www.instagram.com/otwcomputer">
+                                <a href="{{ $pengaturan->instagram }}">
                                     <i class="fab fa-instagram"></i>
                                 </a>
                             </div>
@@ -31,10 +32,7 @@
                         <div class="col-lg-4">
                             <div class="foot-info">
                                 <div class="text mb-4" style="text-align: justify;">
-                                    <b>CV. OTW Computer Gusaha</b> merupakan badan usaha yang berfokus pada penyediaan jasa teknologi, Sebagai perusahaan yang
-                                    berkomitmen dalam mendukung transformasi digital serta menyediakan solusi teknologi informasi
-                                    yang inovatif dan handal. Perusahaan secara aktif berperan sebagai mitra strategis bagi pelanggan, membantu mereka
-                                    meraih kesuksesan melalui penerapan teknologi yang efektif.
+                                   {!! $pengaturan->footer_text !!}
                                 </div>
                             </div>
                         </div>
@@ -42,10 +40,10 @@
                             <div class="links">
                                 <ul class="mt-20">
                                     <li>
-                                        <a href="#"> <i class="fas fa-envelope-open me-2 color-main"></i>info@gusaha.id</a>
+                                        <a href="#"> <i class="fas fa-envelope-open me-2 color-main"></i>  {{ $pengaturan->email }}</a>
                                     </li>
                                     <li>
-                                        <a href="https://wa.me/6282384444812"> <i class="fas fa-phone me-2 color-main"></i>0823 8444 4812</a>
+                                        <a href="https://wa.me/6282384444812"> <i class="fas fa-phone me-2 color-main"></i>  {{ $pengaturan->nomor }}</a>
                                     </li>
                                     <li>
                                         <a href="#"> <i class="fas fa-map-marker-alt me-2 color-main"></i>
@@ -67,9 +65,15 @@
                 </div>
             </div>
             <div class="foot py-4 border-1 border-top brd-gray text-center mt-0 pt-0">
-               <p>
-                    © 2025 Touched by the Hands of <img src="{{ asset('assets/img/logo_otw.png') }}" alt="OTW Computer Gusaha" style="max-height: 15px;">
-                </p>
+            <p>
+    {{ $pengaturan->slogan }}
+    <img 
+        src="{{ asset('storage/' . $pengaturan->logo) }}" 
+        alt="{{ $pengaturan->nama_website }}" 
+        style="height: 15px;"
+    >
+</p>
+
             </div>
         </div>
     </footer>
