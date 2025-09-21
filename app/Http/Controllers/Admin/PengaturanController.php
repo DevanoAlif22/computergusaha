@@ -14,6 +14,7 @@ class PengaturanController extends Controller
         $pengaturan = Pengaturan::first(); // singleton
         return view('admin.pengaturan.index', compact('pengaturan'));
     }
+    
 
     public function update(Request $request)
     {
@@ -47,4 +48,5 @@ class PengaturanController extends Controller
 
         return back()->with('success', 'Pengaturan berhasil diperbarui.');
     }
+    
 }
