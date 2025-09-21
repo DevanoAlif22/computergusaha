@@ -15,6 +15,7 @@ class PengaturanController extends Controller
         return view('admin.pengaturan.index', compact('pengaturan'));
     }
 
+
     public function store(Request $request)
     {
         $validated = $request->validate([
