@@ -170,11 +170,12 @@ Route::get('/start-trial', fn() => view('page-contact-5')); // sementara
 |--------------------------------------------------------------------------
 */
 Route::get('/services5', fn() => view('services5'));
-Route::get('/servicesdetails', fn() => view('servicesdetails'));
-Route::get('/servicesdetailsowa', fn() => view('servicesdetailsowa'));
-Route::get('/servicesdetailsoaku', fn() => view('servicesdetailsoaku'));
-Route::get('/servicesdetailsodigi', fn() => view('servicesdetailsodigi'));
-Route::get('/servicesdetailsomail', fn() => view('servicesdetailsomail'));
+Route::get('/servicesdetails', [FrontController::class, 'servicesdetails']);
+Route::get('/servicesdetailsoaku', [FrontController::class, 'servicesdetailsoaku']);
+Route::get('/servicesdetailsowa', [FrontController::class, 'servicesdetailsowa']);
+Route::get('/servicesdetailsodigi', [FrontController::class, 'servicesdetailsodigi']);
+Route::get('/servicesdetailsomail', [FrontController::class, 'servicesdetailsomail']);
+
 
 
 
@@ -184,7 +185,7 @@ Route::get('/servicesdetailsomail', fn() => view('servicesdetailsomail'));
 
 //Admin
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('lamaran', LamaranController::class, ['as' => 'admin']);
     Route::resource('client', ClientController::class, ['as' => 'admin']);
