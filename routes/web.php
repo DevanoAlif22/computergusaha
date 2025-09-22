@@ -12,21 +12,26 @@ use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\TentangKamiController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\Admin\DigitalController;
 use App\Http\Controllers\Admin\JourneyController;
 use App\Http\Controllers\Admin\LayananController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\UserManagementController;
+use App\Http\Controllers\Admin\AkuntansiController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EcosystemController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\StatisFaqController;
 use App\Http\Controllers\Admin\PengaturanController;
 use App\Http\Controllers\Admin\PortofolioController;
+use App\Http\Controllers\Admin\BisnisEmailController;
 use App\Http\Controllers\Admin\FaqCategoryController;
 use App\Http\Controllers\Admin\PengaturanController2;
+use App\Http\Controllers\Admin\WhatsappApiController;
 use App\Http\Controllers\Admin\KategoriBlogController;
 use App\Http\Controllers\Admin\KategoriLayananController;
+use App\Http\Controllers\Admin\DigitalPengadaanController;
 
 
 /*
@@ -204,6 +209,11 @@ Route::prefix('admin')->group(function () {
     Route::resource('ceo', CeoController::class, ['as' => 'admin']);
     Route::resource('partner', PartnerController::class, ['as' => 'admin']);
     Route::resource('journey', JourneyController::class, ['as' => 'admin']);
+    Route::resource('whatsappapi', WhatsappApiController::class, ['as' => 'admin'])->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('akuntansi', AkuntansiController::class, ['as' => 'admin'])->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('digital', DigitalController::class, ['as' => 'admin'])->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('bisnisemail', BisnisEmailController::class, ['as' => 'admin'])->only(['index', 'store', 'update', 'destroy']);
+    Route::resource('digitalpengadaan', DigitalPengadaanController::class, ['as' => 'admin'])->only(['index', 'store', 'update', 'destroy']);
 });
 
 /*

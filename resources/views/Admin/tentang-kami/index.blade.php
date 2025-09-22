@@ -1,48 +1,89 @@
 @extends('layouts.indexAdmin')
 
-@section('title', 'FAQ')
+@section('title', 'Tentang Kami')
 
 @section('content')
 <div class="container">
-  <h4 class="mb-3">FAQ</h4>
-  <p class="text-muted mb-4">Halaman ini berisi daftar menu statis untuk manajemen FAQ. Klik “Kelola” untuk masuk ke halaman masing-masing.</p>
+  <h4 class="mb-3">Tentang Kami</h4>
+  <p class="text-muted mb-4">Halaman ini berisi daftar menu statis. Klik “Kelola” untuk masuk ke halaman masing-masing.</p>
 
   <div class="row g-3">
-    {{-- Kategori FAQ --}}
+    {{-- CEO --}}
     <div class="col-md-6 col-lg-3">
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex flex-column">
           <div class="d-flex align-items-center mb-3">
-            <i class="bi bi-tags fs-3 me-2"></i>
-            <h5 class="card-title mb-0">Kategori FAQ</h5>
+            <i class="bi bi-person-badge fs-3 me-2"></i>
+            <h5 class="card-title mb-0">CEO</h5>
           </div>
           <p class="card-text text-muted flex-grow-1">
-            Kelola kategori untuk mengelompokkan pertanyaan.
+            Profil CEO, foto, biografi singkat, dan visi misi.
           </p>
-          <a href="{{ route('admin.faq-category.index') }}" class="btn btn-primary mt-auto">
+        <a href="{{ route('admin.ceo.index') }}"
+             class="btn btn-primary mt-auto">
             Kelola
           </a>
         </div>
       </div>
     </div>
 
-    {{-- FAQ --}}
+    {{-- Journey --}}
     <div class="col-md-6 col-lg-3">
       <div class="card h-100 shadow-sm">
         <div class="card-body d-flex flex-column">
           <div class="d-flex align-items-center mb-3">
-            <i class="bi bi-question-circle fs-3 me-2"></i>
-            <h5 class="card-title mb-0">FAQ</h5>
+            <i class="bi bi-flag fs-3 me-2"></i>
+            <h5 class="card-title mb-0">Journey</h5>
           </div>
           <p class="card-text text-muted flex-grow-1">
-            Tambah & edit pertanyaan yang sering diajukan.
+            Timeline perjalanan perusahaan dan milestone penting.
           </p>
-          <a href="{{ route('admin.faq.index') }}" class="btn btn-primary mt-auto">
+        <a href="{{ route('admin.journey.index') }}"
+             class="btn btn-primary mt-auto">
             Kelola
           </a>
         </div>
       </div>
     </div>
+
+    {{-- Partners --}}
+    <div class="col-md-6 col-lg-3">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-people fs-3 me-2"></i>
+            <h5 class="card-title mb-0">Partners</h5>
+          </div>
+          <p class="card-text text-muted flex-grow-1">
+            Daftar mitra/klien, logo, dan deskripsi singkat kolaborasi.
+          </p>
+        <a href="{{ route('admin.partner.index') }}"
+             class="btn btn-primary mt-auto">
+            Kelola
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {{-- News --}}
+    {{-- <div class="col-md-6 col-lg-3">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-newspaper fs-3 me-2"></i>
+            <h5 class="card-title mb-0">News</h5>
+          </div>
+          <p class="card-text text-muted flex-grow-1">
+            Berita & publikasi media terkait perusahaan.
+          </p>
+        <a href="{{ route('admin.new.index') }}"
+             class="btn btn-primary mt-auto">
+            Kelola
+          </a>
+        </div>
+      </div>
+    </div> --}}
   </div>
 </div>
 @endsection
+
