@@ -49,7 +49,12 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
       <a href="{{ url('admin') }}" class="logo d-flex align-items-center">
-        <img src="{{ asset('images/logo_otw.png') }}" alt="">
+         @if($pengaturan && $pengaturan->logo)
+                <img src="{{ asset('storage/' . $pengaturan->logo) }}"
+                     alt="{{ $pengaturan->nama_website }}">
+            @else
+                <span>{{ $pengaturan->nama_website ?? 'Nama Website' }}</span>
+            @endif
         <span class="d-none d-lg-block">Admin</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -230,6 +235,47 @@
         </a>
         </li>
     </ul>
+    </li>
+    {{-- Layanan OTW --}}
+    <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#layananotw-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-file-earmark-text"></i>
+        <span>Layanan OTW</span>
+        <i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="layananotw-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+  <li>
+    <a href="{{ route('admin.whatsappapi.index') }}"
+       class="{{ request()->routeIs('admin.whatsappapi.*') ? 'active' : '' }}">
+      <i class="bi bi-circle"></i><span>WhatsApp API</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{ route('admin.akuntansi.index') }}"
+       class="{{ request()->routeIs('admin.akuntansi.*') ? 'active' : '' }}">
+      <i class="bi bi-circle"></i><span>Akuntansi</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{ route('admin.digital.index') }}"
+       class="{{ request()->routeIs('admin.digital.*') ? 'active' : '' }}">
+      <i class="bi bi-circle"></i><span>Digital</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{ route('admin.bisnisemail.index') }}"
+       class="{{ request()->routeIs('admin.bisnisemail.*') ? 'active' : '' }}">
+      <i class="bi bi-circle"></i><span>Bisnis Email</span>
+    </a>
+  </li>
+  <li>
+    <a href="{{ route('admin.digitalpengadaan.index') }}"
+       class="{{ request()->routeIs('admin.digitalpengadaan.*') ? 'active' : '' }}">
+      <i class="bi bi-circle"></i><span>Digital Pengadaan</span>
+    </a>
+  </li>
+</ul>
+
     </li>
 
 
