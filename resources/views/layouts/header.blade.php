@@ -5,14 +5,14 @@
             <div class="col-7">
                 <div class="top_info">
                     <!-- Email -->
-                    <a href="mailto:{{ $pengaturan->email }}" class="me-4"> 
+                    <a href="mailto:{{ $pengaturan->email }}" class="me-4">
                         <i class="fas fa-envelope-open me-1 color-blue7"></i>
-                        <span>{{ $pengaturan->email }}</span>    
+                        <span>{{ $pengaturan->email }}</span>
                     </a>
                     <!-- Nomor WA -->
-                    <a href="https://wa.me/{{ $pengaturan->nomor }}"> 
+                    <a href="https://wa.me/{{ $pengaturan->nomor }}">
                         <i class="fas fa-phone me-1 color-blue7"></i>
-                        <span>{{ $pengaturan->nomor }}</span>    
+                        <span>{{ $pengaturan->nomor }}</span>
                     </a>
                 </div>
             </div>
@@ -45,7 +45,7 @@
         <!-- Logo Website dari DB -->
         <a class="navbar-brand" href="{{ url('/') }}">
             @if($pengaturan && $pengaturan->logo)
-                <img src="{{ asset('storage/' . $pengaturan->logo) }}" 
+                <img src="{{ asset('storage/' . $pengaturan->logo) }}"
                      alt="{{ $pengaturan->nama_website }}">
             @else
                 <span>{{ $pengaturan->nama_website ?? 'Nama Website' }}</span>
