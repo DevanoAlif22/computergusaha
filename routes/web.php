@@ -169,7 +169,7 @@ Route::get('/start-trial', fn() => view('page-contact-5')); // sementara
 | Layanan Detail
 |--------------------------------------------------------------------------
 */
-Route::get('/services5', fn() => view('services5'));
+Route::get('/services5', [FrontController::class, 'services5'])->name('services5');
 Route::get('/servicesdetails', [FrontController::class, 'servicesdetails']);
 Route::get('/servicesdetailsoaku', [FrontController::class, 'servicesdetailsoaku']);
 Route::get('/servicesdetailsowa', [FrontController::class, 'servicesdetailsowa']);
