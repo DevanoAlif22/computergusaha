@@ -54,19 +54,18 @@
                 <div class="content">
                     <div class="row gx-5">
                         <div class="col-lg-8">
-                            <div class="main-info">
-                                <div class="main-img img-cover">
-                                    <img src="assets/img/vid_banner5.png" alt="">
-                                </div>
-                                <h3 class="text-capitalize mb-20"> OMAIL </h3>
-                                <p class="mb-10">
-                                    Kami persembahkan OMAIL, pencatatan keuangan perusahaan menjadi lebih mudah dan efektif. Aplikasi berbasis web ini menyediakan kemudahan akses online real-time, memungkinkan Anda mencatat transaksi keuangan perusahaan dengan cepat dan akurat dari mana saja dan kapan saja, menggunakan perangkat apa pun. Selamatkan waktu dan tenaga Anda dengan OAKU, solusi pencatatan keuangan yang andal dan efisien untuk kebutuhan bisnis Anda.
-                                </p>
-                                <p class="pb-50 "> 
-                                    We proudly present OMAIL, making company financial record-keeping easier and more effective. This web-based application provides real-time online access, allowing you to record company financial transactions quickly and accurately—anytime, anywhere, and from any device. Save your time and energy with OAKU, a reliable and efficient financial recording solution for your business needs.    
-                                </p>
-
-        <!-- ====== start Popular Posts ====== -->
+                                                      @foreach($data as $item)
+<div class="main-info mb-4">
+    <div class="main-img img-cover">
+        <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->judul }}" 
+             style="width:100%; object-fit:cover;">
+    </div>
+    <h3 class="text-capitalize mb-20">{{ $item->judul }}</h3>
+    <p class="mb-10">
+        {!! $item->deskripsi !!}
+    </p>
+</div>
+@endforeach
 
         <class="popular-posts pt-50 pb-100 border-bottom brd-gray>
             <div class="container">
