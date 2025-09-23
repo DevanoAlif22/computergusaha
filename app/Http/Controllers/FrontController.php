@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Akuntansi;
+use App\Models\BisnisEmail;
 use App\Models\Ceo;
 use App\Models\Blog;
+use App\Models\Digital;
+use App\Models\DigitalPengadaan;
 use App\Models\Karir;
 use App\Models\Client;
 use App\Models\Journey;
@@ -14,10 +18,11 @@ use App\Models\Category;
 use App\Models\Ecosystem;
 use App\Models\Education;
 use App\Models\Portofolio;
+use App\Models\Application;
 use App\Models\FaqCategory;
+use App\Models\WhatsappApi;
 use App\Models\KategoriBlog;
 use Illuminate\Http\Request;
-use App\Models\Application;
 
 class FrontController extends Controller
 {
@@ -132,7 +137,41 @@ public function faq()
 
     return view('faq', compact('categories'));
 }
+  public function servicesdetailsoaku()
+    {
+        // ambil semua data whatsappapis
+        $data = Akuntansi::all();
 
+        return view('servicesdetailsoaku', compact('data'));
+    }
+  public function servicesdetailsowa()
+    {
+        // ambil semua data whatsappapis
+        $data = WhatsappApi::all();
+
+        return view('servicesdetailsowa', compact('data'));
+    }
+  public function servicesdetailsodigi()
+    {
+        // ambil semua data whatsappapis
+        $data = Digital::all();
+
+        return view('servicesdetailsodigi', compact('data'));
+    }
+  public function servicesdetailsomail()
+    {
+        // ambil semua data whatsappapis
+        $data = BisnisEmail::all();
+
+        return view('servicesdetailsomail', compact('data'));
+    }
+  public function servicesdetails()
+    {
+        // ambil semua data whatsappapis
+        $data = DigitalPengadaan::all();
+
+        return view('servicesdetails', compact('data'));
+    }
 
 
 }
